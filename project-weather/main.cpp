@@ -35,6 +35,7 @@ int main () {
     getData(months);
     cout << "Yearly Statistics:\n\n";
     cout << "Average high temperature: ";
+    cout << fixed << showpoint;
     cout << setprecision(2) << averageHigh(months) << DEGREE_SYMBOL << "\n\n";
     cout << "Average low temperature: ";
     cout << setprecision(2) << averageLow(months) << DEGREE_SYMBOL << "\n\n";
@@ -85,7 +86,7 @@ double averageLow(double array[TOTAL_MONTHS][2]) {
 }
 
 int indexHighTemp(double array[TOTAL_MONTHS][2]) {
-  int highest;
+  int highest = 0;
 
   for (int month = 0; month < TOTAL_MONTHS; month++) {
       if (array[month][0] > highest) {
