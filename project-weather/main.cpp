@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 #define TOTAL_MONTHS 12
 
 using namespace std;
