@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #define TOTAL_MONTHS 12
 
 using namespace std;
@@ -34,13 +35,14 @@ int main () {
     getData(months);
     cout << "Yearly Statistics:\n\n";
     cout << "Average high temperature: ";
-    cout << averageHigh(months) << DEGREE_SYMBOL << "\n";
+    cout << fixed << showpoint;
+    cout << setprecision(2) << averageHigh(months) << DEGREE_SYMBOL << "\n\n";
     cout << "Average low temperature: ";
-    cout << averageLow(months) << DEGREE_SYMBOL << "\n";
+    cout << setprecision(2) << averageLow(months) << DEGREE_SYMBOL << "\n\n";
     cout << "Highest temperature: ";
-    cout << indexHighTemp(months) << DEGREE_SYMBOL << "\n";
+    cout << setprecision(2) << indexHighTemp(months) << DEGREE_SYMBOL << "\n\n";
     cout << "Lowest temperature: ";
-    cout << indexLowTemp(months) << DEGREE_SYMBOL << "\n";
+    cout << setprecision(2) << indexLowTemp(months) << DEGREE_SYMBOL << "\n";
 
     return 0;
 }
@@ -84,7 +86,7 @@ double averageLow(double array[TOTAL_MONTHS][2]) {
 }
 
 int indexHighTemp(double array[TOTAL_MONTHS][2]) {
-  int highest;
+  int highest = 0;
 
   for (int month = 0; month < TOTAL_MONTHS; month++) {
       if (array[month][0] > highest) {
