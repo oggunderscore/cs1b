@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------
-//  File name: main.cpp
+//  File name: mainmenu.hpp
 //  Project name: Serendipity
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
@@ -7,20 +7,15 @@
 //  Creation Date: 8/24/19
 //  Date of Last Modification: 8/28/19
 //--------------------------------------------------------------------------
-//  Purpose: Runs the main method of the Serendipity store and calls the 
-//           main menu function.  
+//  Purpose: Header file corresponding to mainmenu.cpp
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Call menu() function.
+//      n/a
 //--------------------------------------------------------------------------
-#include <iostream>
-#include <iomanip>
 
-#include "mainmenu.hpp"
+#ifndef MAINMENU_HPP_
+#define MAINMENU_HPP_
 
-using namespace std;
+void menu();
 
-int main () {
-    menu(); 
-    return 0; 
-}
+#endif
