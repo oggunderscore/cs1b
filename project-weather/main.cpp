@@ -1,3 +1,22 @@
+//--------------------------------------------------------------------------
+//  File name: main.cpp 
+//  Project name: Weather
+//--------------------------------------------------------------------------
+//  Creator's name and email: Felix Murray felix.murray@gmail.com
+//  Course Selection: CS1B
+//  Creation Date: 8/23/19
+//  Date of Last Modification: 8/28/19
+//--------------------------------------------------------------------------
+//  Purpose: This program will take in user input to enter the highest and
+//           lowest temperatures for each month of a given year, then 
+//            outputing the highest and lowest temperatures along with the 
+//            average high and low temperatures for the given user input
+//            values.  
+//--------------------------------------------------------------------------
+//  Algorithm: 
+//      Step 1: Function Call getData() for user input.
+//      Step 2: Output to console calculated values in other functions.
+//--------------------------------------------------------------------------
 #include <iostream>
 #include <iomanip>
 #define TOTAL_MONTHS 12
@@ -5,6 +24,17 @@
 using namespace std;
 
 //functions: getData, averageHigh, averageLow, indexHighTemp, indexLowTemp
+
+//--------------------------------------------------------------------------
+	// DATA DICTIONARY
+	//--------------------------------------------------------------------------
+	// CONSTANTS
+	//--------------------------------------------------------------------------
+	//   NAME              DATA TYPE         VALUE
+	//--------------------------------------------------------------------------
+	//  DEGREE_SYMBOL       string          "\u00b0"
+  //  MONTH_NAMES       string array   Months of the Year (see below declaration)
+	//--------------------------------------------------------------------------
 
 const string DEGREE_SYMBOL = "\u00b0";
 const string MONTH_NAMES[TOTAL_MONTHS] = {
@@ -48,6 +78,7 @@ int main () {
 }
 
 void getData(double array[TOTAL_MONTHS][2]) {
+  system("clear");
   for (int month = 0; month < TOTAL_MONTHS; month++) {
     printMonth(month);
     
@@ -106,3 +137,4 @@ int indexLowTemp(double array[TOTAL_MONTHS][2]) {
   }
   return lowest;
 }
+
