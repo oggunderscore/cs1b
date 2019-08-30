@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------
-//  File name: main.cpp
+//  File name: invmenu.hpp
 //  Project name: Serendipity
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
@@ -7,20 +7,15 @@
 //  Creation Date: 8/24/19
 //  Date of Last Modification: 8/28/19
 //--------------------------------------------------------------------------
-//  Purpose: Runs the main method of the Serendipity store and calls the 
-//           main menu function.  
+//  Purpose: Header file corresponding to invmenu.cpp
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Call menu() function.
+//      n/a 
 //--------------------------------------------------------------------------
-#include <iostream>
-#include <iomanip>
 
-#include "mainmenu.hpp"
+#ifndef INVMENU_HPP_
+#define INVMENU_HPP_
 
-using namespace std;
+void invMenu();
 
-int main () {
-    menu(); 
-    return 0; 
-}
+#endif
