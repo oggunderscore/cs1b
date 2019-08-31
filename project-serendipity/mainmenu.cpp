@@ -45,7 +45,7 @@ void menu () {
     char reply;
     bool shouldLoop = true; 
 
-    while (shouldLoop) {
+    do {
         system("clear");
         cout
             << "\t\t\t\t\t  Serendipity Book Sellers\n"
@@ -80,5 +80,5 @@ void menu () {
 					break;
 				} 
         }
-    }
+    } while (shouldLoop);
 }
