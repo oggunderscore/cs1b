@@ -22,11 +22,15 @@
 //--------------------------------------------------------------------------
 
 #include <iostream>
+#include <string>
 #include "invmenu.hpp"
+#include "addbook.hpp"
+#include "searchbook.hpp"
 
 using namespace std;
 
-void invMenu () {
+void invMenu (string title[], string isbn[], string author[], string publisher[],
+	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -58,39 +62,17 @@ void invMenu () {
 
 		switch (choice) {
 			case '1': 
-				system("clear");
-				cout << "You entered choice 1...\n\n";
-				cout << "Press any key to continue...";
-				cin >> reply;
-				if (reply != '\0'){ 
-					break;
-				}
+				lookUpBook(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNums);
+				break;
 			case '2':
-				system("clear");
-				cout << "You entered choice 2...\n\n";
-				cout << "Press any key then to continue...";
-				cin >> reply;
-
-				if (reply != '\0'){ 
-					break;
-				}
+				addBook(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNums);
+				break;
 			case '3': 
-				system("clear");
-				cout << "You entered choice 3...\n\n";
-				cout << "Press any key to continue...";
-				cin >> reply;
-
-				if (reply != '\0'){ 
-					break;
-				}
+				break;
+				// editBook();
 			case '4': 
-				system("clear");
-				cout << "You entered choice 4...\n\n";
-				cout << "Press any key to continue...";
-				cin >> reply;
-				if (reply != '\0'){ 
-					break;
-				}
+				break;
+				// deleteBook();
 			case '5': 
 				exit = true;
 				break; 
