@@ -16,6 +16,11 @@
 #ifndef INVMENU_HPP_
 #define INVMENU_HPP_
 
-void invMenu();
+#include <string>
+
+using namespace std; 
+
+void invMenu(string title[], string isbn[], string author[], string publisher[],
+	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums);
 
 #endif

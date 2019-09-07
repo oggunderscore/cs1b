@@ -23,13 +23,16 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include "cashier.hpp"
 #include "invmenu.hpp"
 #include "reports.hpp"
+#include "bookinfo.hpp"
 
 using namespace std; 
 
-void menu () {
+void menu (string title[], string isbn[], string author[], string publisher[],
+	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNum) {
     //--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -63,7 +66,7 @@ void menu () {
                 cashier();
                 break;
             case '2': 
-                invMenu();
+                invMenu(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNum);
                 break; 
             case '3':
                 reportsMenu();
