@@ -34,7 +34,6 @@ int main () {
     double wholesale[SIZE];
     double retail[SIZE];
 
-
     menu(bookTitle, isbn, author, publisher, dateAdded, qtyOnHand, wholesale, retail, SIZE, bookCount); 
 
     return 0; 
