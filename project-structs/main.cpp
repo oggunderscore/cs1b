@@ -18,47 +18,58 @@ struct playerType {
     float numRushYards;
 };
 
+int lookUpPlayer (playerType team[]);
+void printPlayer (playerType team[], int index);
 void readFile(playerType team[]);
 
 int main () { 
+    int index = 1; 
     char choice;
+    char reply;
     bool exit = false; 
 
     playerType team[SIZE];
     
     system("clear");
+
     readFile(team);
 
-    // do {
-    //     system("clear");
-    //     cout << "\t\t\t\t     **********************************\n";
-    //     cout << "\t\t\t\t     *     Assignment A5: Structs     *\n";
-    //     cout << "\t\t\t\t     *                                *\n";
-	//     cout << "\t\t\t\t     * <1> Look Up a Player           *\n";
-    //     cout << "\t\t\t\t     * <2> Edit a Player              *\n";
-    //     cout << "\t\t\t\t     * <3> Print Team Roster          *\n";
-    //     cout << "\t\t\t\t     * <4> To Quit                    *\n";
-    //     cout << "\t\t\t\t     **********************************\n";
-    //     cout << "\t\t\t\t     * Choice: ";
+    cout << "Press any key to continue...";
+    cin >> reply;
 
-    //     cin >> choice; 
+    do {
+        system("clear");
+        cout << "\t\t\t\t     **********************************\n";
+        cout << "\t\t\t\t     *     Assignment A5: Structs     *\n";
+        cout << "\t\t\t\t     *                                *\n";
+	    cout << "\t\t\t\t     * <1> Look Up a Player           *\n";
+        cout << "\t\t\t\t     * <2> Edit a Player              *\n";
+        cout << "\t\t\t\t     * <3> Print Team Roster          *\n";
+        cout << "\t\t\t\t     * <4> To Quit                    *\n";
+        cout << "\t\t\t\t     **********************************\n";
+        cout << "\t\t\t\t     * Choice: ";
 
-    //     switch (choice) {
-    //         case '1':
-    //             //lookUp()
-    //             break; 
-    //         case '2':
-    //             //edit()
-    //             break;
-    //         case '3':
-    //             //print()
-    //             break;
-    //         case '4':
-    //             exit = true; 
-    //             system("clear");
-    //             break;
-    //     }
-    // } while (!exit);
+        cin >> choice; 
+
+        switch (choice) {
+            case '1':
+                cout << lookUpPlayer(team);
+                break; 
+            case '2':
+                //edit()
+                break;
+            case '3':
+                system("clear");
+                printPlayer(team, index);
+                cout << "Press any key to continue...";
+                cin >> reply;
+                break;
+            case '4':
+                exit = true; 
+                system("clear");
+                break;
+        }
+    } while (!exit);
     
     return 0; 
 }
@@ -74,18 +85,51 @@ int main () {
 // //lookUpPlayer: is a int fn, which takes an array of playerTypes, 
 // //prompts the user for the name of the player and attempts to find them. 
 // //If found, prints message "found" and returns the index, otherwise prints "not found" 
-// //and returns -1. 
-// //** Extra credit 2 pts if you make it case insensitive and substrings work (i.e. "lex" is found in the string "Lexacon".
 
-// int lookUpPlayer () { 
+int lookUpPlayer (playerType team[]) { 
+    string searchName;
+    string temp; 
 
-// }
+    cout << "\nSearch: "; 
+    getline(cin, searchName);
+
+    for (int index = 0; index < searchName.length(); index++) {
+			searchName[index] = tolower(searchName[index]);
+    }
+
+    for (int index = 0; index < SIZE; index++) { 
+        for (int indexInner = 0; indexInner < team[index].playerName.length(); indexInner++) {
+            temp.append(1, tolower(team[index].playerName.at(indexInner)));
+        }
+        if (temp.find(searchName) != string::npos) {
+            cout << "Player Found!\n";
+            return index; 
+            cout << "\n";
+        }
+    }
+    cout << "\nPlayer Not Found!\n";
+    return -1;
+}
 
 // //printPlayer is a void fn, that that takes a playerType variable by value and prints a single players' record.
 
-// void printPlayer () {
-
-// }
+void printPlayer (playerType team[], int index) {
+    cin.ignore();
+    cout << "---------------------------------------------------------------------\n";
+    cout << "Test: " << team[index].playerName;
+    // cout << "      ";
+    // cout << team[index].playerPosition;
+    // cout << "      ";   
+    // cout << team[index].numTouchdowns;
+    // cout << "      ";   
+    // cout << team[index].numCatches;
+    // cout << "      ";   
+    // cout << team[index].numPassYards;
+    // cout << "      ";   
+    // cout << team[index].numRecieveYards;
+    // cout << "      ";   
+    // cout << team[index].numRushYards << "\n";
+}
 
 // //printTeam, is a void fn, takes the entire array and calls printPlayer for each record.
 
