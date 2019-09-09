@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream> 
 #include <string> 
 
@@ -23,7 +24,7 @@ void printPlayer (playerType team[], int index);
 void readFile(playerType team[]);
 
 int main () { 
-    int index = 1; 
+    int index = 0; 
     char choice;
     char reply;
     bool exit = false; 
@@ -60,8 +61,9 @@ int main () {
                 break;
             case '3':
                 system("clear");
+                cout << index;
                 printPlayer(team, index);
-                cout << "Press any key to continue...";
+                cout << "\nPress any key to continue...";
                 cin >> reply;
                 break;
             case '4':
@@ -114,21 +116,19 @@ int lookUpPlayer (playerType team[]) {
 // //printPlayer is a void fn, that that takes a playerType variable by value and prints a single players' record.
 
 void printPlayer (playerType team[], int index) {
-    cin.ignore();
-    cout << "---------------------------------------------------------------------\n";
-    cout << "Test: " << team[index].playerName;
-    // cout << "      ";
-    // cout << team[index].playerPosition;
-    // cout << "      ";   
-    // cout << team[index].numTouchdowns;
-    // cout << "      ";   
-    // cout << team[index].numCatches;
-    // cout << "      ";   
-    // cout << team[index].numPassYards;
-    // cout << "      ";   
-    // cout << team[index].numRecieveYards;
-    // cout << "      ";   
-    // cout << team[index].numRushYards << "\n";
+    cout << " ---------------------------------------------------------------------\n"
+     << team[0].playerName
+     << "\t\t\t" + team[index].playerPosition
+     << "\t"   
+     << team[index].numTouchdowns
+     << "\t"   
+     << team[index].numCatches
+     << "\t"   
+     << team[index].numPassYards
+     << "\t" 
+     << team[index].numRecieveYards
+     << "\t"  
+     << team[index].numRushYards;
 }
 
 // //printTeam, is a void fn, takes the entire array and calls printPlayer for each record.
@@ -141,14 +141,12 @@ void printPlayer (playerType team[], int index) {
 
 void readFile (playerType team[]) { 
     ifstream inFile; 
-    int index = 0;
     int playerCount = 0;
 
     inFile.open("input.txt");
     cout << "Reading input.txt\n";
-
+    
     for (int index = 0; index < SIZE; index++) {
-        inFile.ignore();
         getline(inFile, team[index].playerName);
         getline(inFile, team[index].playerPosition);
         inFile >> team[index].numTouchdowns;
@@ -156,7 +154,21 @@ void readFile (playerType team[]) {
         inFile >> team[index].numPassYards;
         inFile >> team[index].numRecieveYards;
         inFile >> team[index].numRushYards;
-        inFile.ignore();
+
+        //simnple solution to capturing 1 word and then a \n
+        // the 2 ensures the data is captured and the newline is consumed
+
+        inFile.ignore(2, '\n');
+        // cout << "INDEX:" << index << "\n";
+        // cout << "LOG:" << team[index].playerName << "\n";
+        // cout << "LOG:" << team[index].playerPosition << "\n";
+        // cout << "LOG:" << team[index].numTouchdowns << "\n";
+        // cout << "LOG:" << team[index].numCatches << "\n";
+        // cout << "LOG:" << team[index].numPassYards << "\n";
+        // cout << "LOG:" << team[index].numRecieveYards << "\n";
+        // cout << "LOG:" << team[index].numRushYards << "\n";
+
+        //inFile.ignore();
         // cout << "Player " << index + 1 << ". Name: " << team[index].playerName << "\n";
         // cout << "Player " << index + 1 << ". Pos: " << team[index].playerPosition << "\n";
         // cout << "Player " << index + 1 << ". TD: " << team[index].numTouchdowns << "\n";
