@@ -73,6 +73,7 @@ void menu (string title[], string isbn[], string author[], string publisher[],
                 break;
             case '4':
                 shouldLoop = false; 
+                system("clear");
                 break; 
             default: 
                 system("clear");

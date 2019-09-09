@@ -68,7 +68,7 @@ void cashier () {
 		
 		bool inputRecieved = false; 
 
-		cout << "\t\t\t\t\t  Serendipity Booksellers\n";
+		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 		cout << "\t\t\t\t\t       Cashier Module\n\n";
 
 		cin.ignore();

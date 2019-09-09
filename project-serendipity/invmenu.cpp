@@ -48,8 +48,8 @@ void invMenu (string title[], string isbn[], string author[], string publisher[]
 
 	do {
 		system("clear");
-		cout << "\t\t\t\t\t  Serendipity Booksellers\n";
-		cout << "\t\t\t\t\t     Inventory Database\n\n";
+		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+		cout << "\t\t\t\t\t      Inventory Database\n\n";
 
 		cout << "\t\t\t\t\t1.   Look Up a Book\n";
 		cout << "\t\t\t\t\t2.   Add a Book\n";
@@ -89,8 +89,10 @@ void invMenu (string title[], string isbn[], string author[], string publisher[]
 				break; 
 			default: 
 				system("clear");
-				cout << "ERROR: Choice must be a number 1 - 5.\n\n";
-				cout << "Press any key to continue...";
+				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
+		             << "\t\t\t\t\t      Inventory Database\n";
+				cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
+				cout << "\t\t\t\t        Press any key to continue...";
 				cin >> reply;
 				
 				if (reply != '\0'){ 
