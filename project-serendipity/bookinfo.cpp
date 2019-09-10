@@ -8,20 +8,20 @@ void bookInfo(string title[], string isbn[], string author[], string publisher[]
 	char reply; 
 	system("clear");
 
-	cout << "Serendipity Booksellers\n";
-	cout << "   Book Information\n\n";
+	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
+	cout << "\t\t\t\t\t     Book Information\n\n";
 
-	cout << "Title:: " << title[index] << endl;
-	cout << "ISBN: " << isbn[index] << endl;
-	cout << "Author: " << author[index] << endl;
-	cout << "Publisher: " << publisher[index] << endl;
-	cout << "Date Added: " << date[index] << endl;
-	cout << "Quantity on Hand: " << qty[index] << endl;
-	cout << "Wholesale Cost: " << wholesale[index] << endl;
-	cout << "Retail Price: " << retail[index] << endl;
+	cout << "\t\t\t\t\t Title:              " << title[index] << endl;
+	cout << "\t\t\t\t\t ISBN:               " << isbn[index] << endl;
+	cout << "\t\t\t\t\t Author:             " << author[index] << endl;
+	cout << "\t\t\t\t\t Publisher:          " << publisher[index] << endl;
+	cout << "\t\t\t\t\t Date Added:         " << date[index] << endl;
+	cout << "\t\t\t\t\t Quantity on Hand:   " << qty[index] << endl;
+	cout << "\t\t\t\t\t Wholesale Cost:   $ " << wholesale[index] << endl;
+	cout << "\t\t\t\t\t Retail Price:     $ " << retail[index] << endl;
 
 	while (true) {
-		cout << "Press any key to continue...";
+		cout << "\n\t\t\t\t        Press any key to continue...";
 		cin >> reply;		
 		if (reply != '\0'){ 
 			break;

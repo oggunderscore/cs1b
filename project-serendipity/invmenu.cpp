@@ -68,11 +68,22 @@ void invMenu (string title[], string isbn[], string author[], string publisher[]
 				addBook(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNums);
 				break;
 			case '3': 
+				system("clear");
+				cout << "You entered choice 3...\n\n";
+				cout << "Press any key to continue...";
+				cin >> reply;
+				if (reply != '\0'){ 
+					break;
+				}
 				break;
-				// editBook();
 			case '4': 
+				cout << "You entered choice 4...\n\n";
+				cout << "Press any key to continue...";
+				cin >> reply;
+				if (reply != '\0'){ 
+					break;
+				}
 				break;
-				// deleteBook();
 			case '5': 
 				exit = true;
 				break; 

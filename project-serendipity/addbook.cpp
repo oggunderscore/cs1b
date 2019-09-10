@@ -19,37 +19,33 @@ void addBook(string title[], string isbn[], string author[], string publisher[],
 
 	if (empty) {
 		system("clear");
+		cout << "\t\t\t\t\t  Serendipity Booksellers\n";
+		cout << "\t\t\t\t\t          Add Book\n\n";
+
 		cin.ignore();
-		cout << "\nEnter Title: ";
+
+		cout << "\t\t\t\t\t Enter Title:              "; 
 		getline(cin, title[index]);
-
-		cout << "\nEnter ISBN: ";
+		cout << "\t\t\t\t\t Enter ISBN:               ";
 		getline(cin, isbn[index]);
-
-		cout << "\nEnter Author: ";
+		cout << "\t\t\t\t\t Enter Author:             ";
 		getline(cin, author[index]);
-
-		cout << "\nEnter Publisher: ";
+		cout << "\t\t\t\t\t Enter Publisher:          ";
 		getline(cin, publisher[index]);
-
-		cout << "\nEnter Date Added to Inventory: ";
+		cout << "\t\t\t\t\t Enter Date Added:         ";
 		getline(cin, date[index]);
-
-		cout << "\nEnter Quantity Added: ";
+		cout << "\t\t\t\t\t Enter Quantity Added:     ";
 		cin >> qty[index];
-
-		cout << "\nEnter Wholesale Price: ";
+		cout << "\t\t\t\t\t Enter Wholesale Price:    ";
 		cin >> wholesale[index];
-
-		cout << "\nEnter Retail Price: ";
+		cout << "\t\t\t\t\t Enter Retail Price:       ";
 		cin >> retail[index];
-
-		cout << "\nRecord was entered.\n\n";
-
+		cout << "\n\n\t\t\t\t\t     Record was entered.\n\n";
+		
 		bookNums++;
 		
 		while (true) {
-			cout << "Press any key to continue...";
+			cout << "\t\t\t\t        Press any key to continue...";
 			cin >> reply;		
 			if (reply != '\0'){ 
 				break;
