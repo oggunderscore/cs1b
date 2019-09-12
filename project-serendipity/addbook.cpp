@@ -27,6 +27,23 @@ using namespace std;
 
 void addBook(string title[], string isbn[], string author[], string publisher[],
 	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums) {
+	//--------------------------------------------------------------------------
+	// DATA DICTIONARY
+	//--------------------------------------------------------------------------
+	// VARIABLES
+	//
+	//   NAME              DATA TYPE         VALUE
+	//--------------------------------------------------------------------------
+	//  selectRecord	    char				null
+	//  exit                bool               false
+	//  found               bool               false
+	//  loopEnd             bool               false
+	//  recoredViewed       bool               false
+	//  reply               char   			    null
+	//  temp               string               null
+	//  searchTitle        string               null            
+	//--------------------------------------------------------------------------
+	
 	bool empty = false;
 	bool exit = false;
 	int index = 0;

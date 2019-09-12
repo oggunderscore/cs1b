@@ -35,12 +35,14 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 	//
 	//   NAME              DATA TYPE         VALUE
 	//--------------------------------------------------------------------------
-	//  choice				char				null
+	//  selectRecord	    char				null
 	//  exit                bool               false
 	//  found               bool               false
 	//  loopEnd             bool               false
 	//  recoredViewed       bool               false
-	//  reply              char   			    null                 
+	//  reply               char   			    null
+	//  temp               string               null
+	//  searchTitle        string               null            
 	//--------------------------------------------------------------------------
 
 	char reply;
