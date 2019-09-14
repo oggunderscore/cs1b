@@ -13,8 +13,8 @@
 //      n/a 
 //--------------------------------------------------------------------------
 
-#ifndef INVMENU_HPP_
-#define INVMENU_HPP_
+#ifndef INVENTORYMENU_HPP_
+#define INVENTORYMENU_HPP_
 
 #include <string>
 

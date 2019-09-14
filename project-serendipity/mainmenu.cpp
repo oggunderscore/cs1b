@@ -25,9 +25,10 @@
 #include <iomanip>
 #include <string>
 #include "cashier.hpp"
-#include "invmenu.hpp"
+#include "inventorymenu.hpp"
 #include "reports.hpp"
 #include "bookinfo.hpp"
+#include "searchbook.hpp"
 
 using namespace std; 
 
@@ -73,6 +74,7 @@ void menu (string title[], string isbn[], string author[], string publisher[],
                 break;
             case '4':
                 shouldLoop = false; 
+                system("clear");
                 break; 
             default: 
                 system("clear");
