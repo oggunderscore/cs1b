@@ -73,47 +73,46 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 		}
 
 		for (int index = 0; index < bookNums; index++) {
+			temp = "";
 			for (int indexInner = 0; indexInner < title[index].length(); indexInner++) {
 				temp.append(1, tolower(title[index].at(indexInner)));
 			}
-				
-				if (temp.find(searchTitle) != string::npos){
-					while (true) {
-						system("clear"); 
+			 //uncomment below if temp value seems to be causing issues
+			 //cout << temp;
+			if (temp.find(searchTitle) != string::npos){
+				while (true) {
+					cout << "\n\n";
+					 system("clear"); 
+					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+					cout << "\t\t\t\t\t         Book Search\n\n";
+					cout << "\t\t\t\t\t      RESULT>: " << title[index] <<  "\n\n";
+					cout << "\t\t\t\t\tView this book record? (Y/N): ";
+					cin >> selectRecord;
+					cin.ignore(600, '\n');
+		
+					if (selectRecord == 'Y' || selectRecord == 'y') {
+						bookInfo(title, isbn, author, publisher, date,
+									qty, wholesale, retail, SIZE, index);
+						recordViewed = true; 
+						break;
+					} else if (selectRecord == 'N' || selectRecord == 'n') {
+						break;	
+					} else {
+						system("clear");
 						cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 						cout << "\t\t\t\t\t         Book Search\n\n";
-						cout << "\t\t\t\t\t      RESULT>: " << title[index] <<  "\n\n";
-						cout << "\t\t\t\t\tView this book record? (Y/N): ";
-						cin >> selectRecord;
-						cin.ignore(600, '\n');
-			
-						if (selectRecord == 'Y' || selectRecord == 'y') {
-							bookInfo(title, isbn, author, publisher, date,
-								 	 qty, wholesale, retail, SIZE, index);
-							recordViewed = true; 
-							break;
-						} else if (selectRecord == 'N' || selectRecord == 'n') {
-							break;	
-						} else {
-							system("clear");
-							cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-							cout << "\t\t\t\t\t         Book Search\n\n";
-							cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
-							cout << "\t\t\t\t        Press any key to continue...";
-							cin >> reply;		
-							if (reply != '\0'){ 
-								continue;
-							}
+						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
+						cout << "\t\t\t\t        Press any key to continue...";
+						cin >> reply;		
+						if (reply != '\0'){ 
+							continue;
 						}
 					}
-					if (recordViewed) {
-						break;
-					}	
 				}
-				if (index == bookNums) {
-					loopEnd = true;
-					notFound = true;
-				}
+				if (recordViewed) {
+					break;
+				}	
+			}
 		}
 
 		if (loopEnd && notFound) {
@@ -124,7 +123,7 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 			cout << "\t\t\t\t        Press any key to continue...";
 			cin >> reply;
 		}
-		temp = "";
+		//temp = "";
 	} else {
 		cout << "\t\t\t\t    No books currently in the database!\n\n";
 		cout << "\t\t\t\t        Press any key to continue...";

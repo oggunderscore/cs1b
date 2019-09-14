@@ -25,9 +25,10 @@
 #include <iomanip>
 #include <string>
 #include "cashier.hpp"
-#include "invmenu.hpp"
+#include "inventorymenu.hpp"
 #include "reports.hpp"
 #include "bookinfo.hpp"
+#include "searchbook.hpp"
 
 using namespace std; 
 

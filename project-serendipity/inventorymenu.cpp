@@ -23,7 +23,7 @@
 
 #include <iostream>
 #include <string>
-#include "invmenu.hpp"
+#include "inventorymenu.hpp"
 #include "addbook.hpp"
 #include "searchbook.hpp"
 
