@@ -47,9 +47,8 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 
 	char reply;
 	char selectRecord;
-	bool loopEnd = false;
 	bool recordViewed = false; 
-	bool notFound = false;
+	bool found = false;
 	int index = 0;
 	string temp;
 	string searchTitle;
@@ -80,9 +79,10 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 			 //uncomment below if temp value seems to be causing issues
 			 //cout << temp;
 			if (temp.find(searchTitle) != string::npos){
+				found = true;
+
 				while (true) {
-					cout << "\n\n";
-					 system("clear"); 
+					system("clear"); 
 					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 					cout << "\t\t\t\t\t         Book Search\n\n";
 					cout << "\t\t\t\t\t      RESULT>: " << title[index] <<  "\n\n";
@@ -113,9 +113,10 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 					break;
 				}	
 			}
+			found = false;
 		}
 
-		if (loopEnd && notFound) {
+		if (!found) {
 			system("clear");
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 			cout << "\t\t\t\t\t         Book Search\n\n";
