@@ -26,8 +26,9 @@
 
 using namespace std; 
 
-void lookUpBook(string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums) {
+extern bookType books[20];
+
+void lookUpBook(int &bookNums) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -73,26 +74,25 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 
 		for (int index = 0; index < bookNums; index++) {
 			temp = "";
-			for (int indexInner = 0; indexInner < title[index].length(); indexInner++) {
-				temp.append(1, tolower(title[index].at(indexInner)));
+			for (int indexInner = 0; indexInner < books[index].bookTitle.length(); indexInner++) {
+				temp.append(1, tolower(books[index].bookTitle.at(indexInner)));
 			}
 			 //uncomment below if temp value seems to be causing issues
-			 //cout << temp;
+			 //cout << temp << " " << "\n" << index << " ";
 			if (temp.find(searchTitle) != string::npos){
 				found = true;
 
-				while (true) {
+				while (true) {			
 					system("clear"); 
 					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 					cout << "\t\t\t\t\t         Book Search\n\n";
-					cout << "\t\t\t\t\t      RESULT>: " << title[index] <<  "\n\n";
+					cout << "\t\t\t\t\t      RESULT>: " << books[index].bookTitle <<  "\n\n";
 					cout << "\t\t\t\t\tView this book record? (Y/N): ";
 					cin >> selectRecord;
 					cin.ignore(600, '\n');
 		
 					if (selectRecord == 'Y' || selectRecord == 'y') {
-						bookInfo(title, isbn, author, publisher, date,
-									qty, wholesale, retail, SIZE, index);
+						bookInfo(index);
 						recordViewed = true; 
 						break;
 					} else if (selectRecord == 'N' || selectRecord == 'n') {
@@ -113,7 +113,9 @@ void lookUpBook(string title[], string isbn[], string author[], string publisher
 					break;
 				}	
 			}
-			found = false;
+			if (index > bookNums - 1) {
+				found = false;
+			}
 		}
 
 		if (!found) {

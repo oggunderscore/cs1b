@@ -16,25 +16,28 @@
 
 #include <iostream>
 #include "bookinfo.hpp"
+#include "bookdata.hpp"
 
 using namespace std;
 
-void bookInfo(string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int index) {
+extern bookType books[20];
+
+void bookInfo(int index) {
 	char reply; 
 	system("clear");
 
 	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
 	cout << "\t\t\t\t\t     Book Information\n\n";
 
-	cout << "\t\t\t\t\t Title:              " << title[index] << endl;
-	cout << "\t\t\t\t\t ISBN:               " << isbn[index] << endl;
-	cout << "\t\t\t\t\t Author:             " << author[index] << endl;
-	cout << "\t\t\t\t\t Publisher:          " << publisher[index] << endl;
-	cout << "\t\t\t\t\t Date Added:         " << date[index] << endl;
-	cout << "\t\t\t\t\t Quantity on Hand:   " << qty[index] << endl;
-	cout << "\t\t\t\t\t Wholesale Cost:   $ " << wholesale[index] << endl;
-	cout << "\t\t\t\t\t Retail Price:     $ " << retail[index] << endl;
+	//FIX ME
+	cout << "\t\t\t\t\t Title:              " << books[index].bookTitle << endl;
+	cout << "\t\t\t\t\t ISBN:               " << books[index].isbn << endl;
+	cout << "\t\t\t\t\t Author:             " << books[index].author << endl;
+	cout << "\t\t\t\t\t Publisher:          " << books[index].publisher << endl;
+	cout << "\t\t\t\t\t Date Added:         " << books[index].dateAdded << endl;
+	cout << "\t\t\t\t\t Quantity on Hand:   " << books[index].qtyOnHand << endl;
+	cout << "\t\t\t\t\t Wholesale Cost:   $ " << books[index].retail << endl;
+	cout << "\t\t\t\t\t Retail Price:     $ " << books[index].retail << endl;
 
 	while (true) {
 		cout << "\n\t\t\t\t        Press any key to continue...";

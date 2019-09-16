@@ -1,10 +1,11 @@
 #ifndef BOOKINFO_H
 #define BOOKINFO_H
+
 #include <string>
+#include "bookdata.hpp"
 
 using namespace std;
 
-void bookInfo(string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int index);
+void bookInfo(int index);
 
 #endif
