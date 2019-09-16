@@ -29,11 +29,11 @@
 #include "reports.hpp"
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
+#include "bookdata.hpp"
 
 using namespace std; 
 
-void menu (string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNum) {
+void mainMenu (int &bookNum) {
     //--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -64,10 +64,10 @@ void menu (string title[], string isbn[], string author[], string publisher[],
         
         switch (choice) {
             case '1':
-                cashier();
+                cashier(bookNum);
                 break;
             case '2': 
-                invMenu(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNum);
+                invMenu(bookNum);
                 break; 
             case '3':
                 reportsMenu();

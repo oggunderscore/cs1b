@@ -22,11 +22,14 @@
 #include <string> 
 #include <iomanip>
 #include "addbook.hpp"
+#include "bookdata.hpp"
+#define SIZE 20
 
 using namespace std; 
 
-void addBook(string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums) {
+extern bookType books[SIZE];
+
+void addBook(int &bookNums) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -141,14 +144,15 @@ void addBook(string title[], string isbn[], string author[], string publisher[],
 						break;
 					}
 					system("clear");
-					title[bookNums] = tempBookTitle;
-					isbn[bookNums] = tempISBN;
-					author[bookNums] = tempAuthor;
-					publisher[bookNums] = tempPublisher;
-					date[bookNums] = tempDateAdded;
-					qty[bookNums] = tempQtyOnHand;
-					wholesale[bookNums] = tempWholeSale;
-					retail[bookNums] = tempRetail;
+					
+					setTitle(tempBookTitle, bookNums);
+					setISBN(tempISBN, bookNums);
+					setAuthor(tempAuthor, bookNums);
+					setPublisher(tempPublisher, bookNums);
+					setDateAdded(tempDateAdded, bookNums);
+					setQty(tempQtyOnHand, bookNums);
+					setWholesale(tempWholeSale, bookNums);
+					setRetail(tempRetail, bookNums);
 					bookNums++;
 
 					tempBookTitle = "EMPTY";

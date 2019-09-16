@@ -29,8 +29,7 @@
 
 using namespace std;
 
-void invMenu (string title[], string isbn[], string author[], string publisher[],
-	string date[], int qty[], double wholesale[], double retail[], const int SIZE, int &bookNums) {
+void invMenu (int &bookNums) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -62,10 +61,10 @@ void invMenu (string title[], string isbn[], string author[], string publisher[]
 
 		switch (choice) {
 			case '1': 
-				lookUpBook(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNums);
+				lookUpBook(bookNums);
 				break;
 			case '2':
-				addBook(title, isbn, author, publisher, date, qty, wholesale, retail, SIZE, bookNums);
+				addBook(bookNums);
 				break;
 			case '3': 
 				system("clear");

@@ -16,25 +16,20 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-
 #include "mainmenu.hpp"
+#include "bookdata.hpp"
 
 using namespace std;
 
-int main () {
-    const int SIZE = 20;
-    int bookCount = 0; 
-    
-    string bookTitle[SIZE];
-    string isbn[SIZE];
-    string author[SIZE];
-    string publisher[SIZE];
-    string dateAdded[SIZE];
-    int qtyOnHand[SIZE];
-    double wholesale[SIZE];
-    double retail[SIZE];
+const int SIZE = 20;
 
-    menu(bookTitle, isbn, author, publisher, dateAdded, qtyOnHand, wholesale, retail, SIZE, bookCount); 
+bookType books[SIZE];
+
+int main () {
+    
+    int bookCount = 0; 
+
+    mainMenu(bookCount); 
 
     return 0; 
 }
