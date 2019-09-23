@@ -1,23 +1,24 @@
 //--------------------------------------------------------------------------
-//  File name: main.cpp
-//  Project name: Constructors
+//  File name: studentType.cpp
+//  Project name: Inheritance
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
 //  Course Selection: CS1B
-//  Creation Date: 9/13/19
-//  Date of Last Modification: 9/15/19
+//  Creation Date: 9/20/19
+//  Date of Last Modification: 9/22/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will hardcode 5 people of type personType using 
-//           the personType class and print their relevent information 
-//           (name, address, DOB, height, and gender). The program will then
-//           make to comparisons between 2 different people and the same 
-//           person to test the equals function.
+//  Purpose: This program will hardcode 3 people of type studentType using 
+//           the studentType class and inherit from the personType class
+//           the attributes of a person. The program will then print out the
+//           students and people and make comparisons amongst the 3 students 
+//           to test the equals function override in studentType.
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Initialize the personType variables and clear the console. 
-//      Step 2: Set the information for the personType variables using the 
-//              three constructors.
-//      Step 3: Print out the 3 personType variables using print function.
+//      Step 1: Initialize the personType, studentType variables 
+//              and clear the console. 
+//      Step 2: Set the information for the variables using relevent 
+//              constructors.
+//      Step 3: Print out the variables using the print function.
 //      Step 4: Prompt the user to "Press any key to continue..." and clear
 //              console once input has been recieved.
 //--------------------------------------------------------------------------
@@ -28,102 +29,89 @@
 
 using namespace std;
 
+    //--------------------------------------------------------------------------
+    //  Function: equals
+    //--------------------------------------------------------------------------
+    //  Purpose: Compares whether two students are the same by looking at each
+    //           attribute individually.
+    //--------------------------------------------------------------------------
+    bool studentType::equals(studentType student) {
+        if(getGPA() == student.getGPA() 
+            && getID() == student.getID() 
+            && getClassification() == student.getClassification()
+            ) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    /***************** Constructors *********************/
 
 
-class studentType : public personType {
-	//--------------------------------------------------------------------------
-	// DATA DICTIONARY
-	//--------------------------------------------------------------------------
-	// VARIABLES
-	//
-	//   NAME              DATA TYPE         VALUE
-	//--------------------------------------------------------------------------
-	//  fName	           string				null
-	//  lName              string               null
-	//  address            string               null
-	//  dob                string               null
-	//  height             double               null
-	//  gender              char   			    null
-	//--------------------------------------------------------------------------
-	public:
-		bool studentType::equals(studentType student) {
-            if(personType::equals(student)
-               && getGPA() == student.getGPA() 
-               && getID() == student.getID() 
-               && getClassification() == student.getClassification()
-              ) {
-				cout << "These students are the same person." << endl;
-				return true;
-			} else {
-                cout << "These students are the same person." << endl;
-            } 
-		}
-		/***************** Constructors *********************/
+    studentType::studentType(){
+        studentType::setInfo(0.0, "DEFAULT-STANDING", "DEFAULT-ID");
+    }
 
+    studentType::studentType(string fName, string lName)
+                :personType(fName, lName) {
+        studentType::setInfo(0.0, "DEFAULT-STANDING", "DEFAULT-ID");
+    }
 
-        studentType::studentType(){
-            studentType::setInfo(0.0, "DEFAULT-STANDING", "DEFAULT-ID");
-        }
+    studentType::studentType(string nameF, string nameL, 
+                                double grade, 
+                                string standing, string identify)
+                : personType(nameF, nameL) {
+        studentType::setInfo(grade, standing, identify);    
+    }
 
-		studentType::studentType(string fName, string lName)
-                    :personType(fName, lName) {
-            studentType::studentType();
-		}
+    studentType::studentType(string initFName, string initLName, string initAddress,
+                                double initHeight, string initDob, 
+                                char initGender, double grade, 
+                                string standing, string identify)
+                : personType(initFName, 
+                                initLName, 
+                                initAddress,
+                                initHeight,
+                                initDob, 
+                                initGender) {
+        studentType::setInfo(grade, standing, identify);
+    }
+    /***************** Mutator Functions *********************/
 
-		studentType::studentType(string nameF, string nameL, 
-                                  double grade, 
-                                  string standing, string identify)
-                    : personType(nameF, nameL) {
-            studentType::setInfo(grade, standing, identify);    
-		}
+    void studentType::setInfo(double grade, 
+                                string standing, 
+                                string identify) {
+        gpa = grade;
+        classification = standing;
+        id = identify;	
+    }
 
-        studentType::studentType(string initFName, string initLName, string initAddress,
-			                     double initHeight, string initDob, 
-                                 char initGender, double grade, 
-                                 string standing, string identify)
-                    : personType(initFName, 
-                                 initLName, 
-                                 initAddress,
-			                     initHeight,
-                                 initDob, 
-                                 initGender) {
-            studentType::setInfo(grade, standing, identify);
-        }
-		/***************** Mutator Functions *********************/
+    /********************* Accessor Functions *********************/
 
-		void studentType::setInfo(double grade, 
-                                  string standing, 
-                                  string identify) {
-            gpa = grade;
-            classification = standing;
-            id = identify;	
-		}
+    double studentType::getGPA() {
+        return gpa;
+    }
 
-		/********************* Accessor Functions *********************/
+    string studentType::getID() {
+        return id;
+    }
 
-		double studentType::getGPA() {
-			return gpa;
-		}
+    string studentType::getClassification() {
+        return classification;
+    }
 
-		string studentType::getID() {
-			return id;
-		}
+    //--------------------------------------------------------------------------
+    //  Function: print
+    //--------------------------------------------------------------------------
+    //  Purpose: Calls the personType print() method and then outputs the ID, 
+    //           GPA, and Classification of the student to the console.
+    //--------------------------------------------------------------------------
+    void studentType::print() {
+        personType::print();
+        cout << fixed;
+        cout.precision(2);
+        cout << "ID: " << getID() << "\n" << "GPA: " << getGPA() 
+                << "\n" << "Classification: " << getClassification()
+                << "\n\n"; 
+    }
 
-		string studentType::getClassification() {
-			return classification;
-		}
-
-		void studentType::print() {
-			personType::print();
-            cout << fixed;
-			cout.precision(2);
-			cout << "ID: " << getID() << "\n" << "GPA: " << getGPA() 
-                 << "\n" << "Classification: " << getClassification()
-                 << "\n\n"; 
-		}
-
-    private:
-	    string id; //added every id 'should' be unique
-        double gpa;
-        string classification;
-};
