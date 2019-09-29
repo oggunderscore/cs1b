@@ -21,16 +21,12 @@
 
 using namespace std;
 
-const int SIZE = 20;
+int main () {
+    bookType books[20];
 
-bookType books[SIZE];
+    int bookCount = 0; 
 
-int main()
-{
-
-    int bookCount = 0;
-
-    mainMenu(bookCount);
+    mainMenu(bookCount, books); 
 
     return 0;
 }

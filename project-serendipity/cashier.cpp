@@ -33,12 +33,9 @@
 
 using namespace std;
 
-extern bookType books[20];
-
 #define SALES_TAX 0.06;
 
-void cashier(int &bookNums)
-{
+void cashier (int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------

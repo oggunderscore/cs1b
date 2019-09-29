@@ -16,10 +16,8 @@
 #ifndef MAINMENU_HPP_
 #define MAINMENU_HPP_
 
-#include <string> 
+#include "bookdata.hpp"
 
-using namespace std; 
-
-void mainMenu(int &bookNum);
+void mainMenu(int &bookNum, bookType books[]);
 
 #endif

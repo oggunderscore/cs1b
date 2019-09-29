@@ -23,14 +23,10 @@
 #include <iomanip>
 #include "addbook.hpp"
 #include "bookdata.hpp"
-#define SIZE 20
 
 using namespace std;
 
-extern bookType books[SIZE];
-
-void addBook(int &bookNums)
-{
+void addBook(int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -62,18 +58,15 @@ void addBook(int &bookNums)
 	double tempWholeSale;
 	double tempRetail;
 
-	if (bookNums < SIZE - 1)
-	{
-		while (!exit)
-		{
+	if (bookNums < 20 - 1) {
+		while (!exit) {
 			system("clear");
 			cout << fixed;
 			cout.precision(2);
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 				 << "\t\t\t\t\t           Add Book\n"
-				 << "\t\t\t\t       Current Database Size: " << bookNums
-				 << " (Max " << SIZE << ")\n"
-				 << endl;
+			     << "\t\t\t\t       Current Database Size: " << bookNums
+				 << " (Max 20)\n" << endl;
 			cout << "\t\t\t\t\t\t\t\t     + Pending Values +" << endl;
 			cout << "\t\t\t\t(1) Enter Book Title\t\t\t >   --" << tempBookTitle << endl;
 			cout << "\t\t\t\t(2) Enter ISBN\t\t\t\t >   --" << tempISBN << endl;
@@ -139,26 +132,25 @@ void addBook(int &bookNums)
 				cin >> tempRetail;
 				break;
 			case '9':
-				if (bookNums == SIZE)
-				{
+				if (bookNums == 20) {
 					system("clear");
 					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-						 << "\t\t\t\t\t           Add Book\n\n";
+							<< "\t\t\t\t\t           Add Book\n\n";
 					cout << "\t\t\t\t\t    ERROR: Database Full.\n\n";
 					cout << "\t\t\t\t        Press any key to continue...";
-					cin >> reply;
+					cin >> reply; 
 					break;
 				}
 				system("clear");
-
-				setTitle(tempBookTitle, bookNums);
-				setISBN(tempISBN, bookNums);
-				setAuthor(tempAuthor, bookNums);
-				setPublisher(tempPublisher, bookNums);
-				setDateAdded(tempDateAdded, bookNums);
-				setQty(tempQtyOnHand, bookNums);
-				setWholesale(tempWholeSale, bookNums);
-				setRetail(tempRetail, bookNums);
+				
+				setTitle(tempBookTitle, bookNums, books);
+				setISBN(tempISBN, bookNums, books);
+				setAuthor(tempAuthor, bookNums, books);
+				setPublisher(tempPublisher, bookNums, books);
+				setDateAdded(tempDateAdded, bookNums, books);
+				setQty(tempQtyOnHand, bookNums, books);
+				setWholesale(tempWholeSale, bookNums, books);
+				setRetail(tempRetail, bookNums, books);
 				bookNums++;
 
 				tempBookTitle = "EMPTY";

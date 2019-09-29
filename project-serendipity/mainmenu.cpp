@@ -33,19 +33,7 @@
 
 using namespace std;
 
-void mainMenu(int &bookNum)
-{
-    //--------------------------------------------------------------------------
-    // DATA DICTIONARY
-    //--------------------------------------------------------------------------
-    // VARIABLES
-    //
-    //   NAME              DATA TYPE         VALUE
-    //--------------------------------------------------------------------------
-    //  choice				char				null
-    //  reply              string   			null
-    //  shouldLoop          bool                true
-    //--------------------------------------------------------------------------
+void mainMenu (int &bookNum, bookType books[]) {
     char choice;
     char reply;
     bool shouldLoop = true;
@@ -67,10 +55,10 @@ void mainMenu(int &bookNum)
         switch (choice)
         {
         case '1':
-            cashier(bookNum);
+            cashier(bookNum, books);
             break;
         case '2':
-            invMenu(bookNum);
+            invMenu(bookNum, books);
             break;
         case '3':
             reportsMenu();
