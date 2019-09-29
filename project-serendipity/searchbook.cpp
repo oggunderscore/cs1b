@@ -23,12 +23,16 @@
 #include <string> 
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
+#include "bookdata.hpp"
 
 using namespace std; 
 
-extern bookType books[20];
 
-void lookUpBook(int &bookNums) {
+// int lookUpLogic() {
+
+// }
+
+void lookUpBook(int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -92,7 +96,7 @@ void lookUpBook(int &bookNums) {
 					cin.ignore(600, '\n');
 		
 					if (selectRecord == 'Y' || selectRecord == 'y') {
-						bookInfo(index);
+						bookInfo(index, books);
 						recordViewed = true; 
 						break;
 					} else if (selectRecord == 'N' || selectRecord == 'n') {

@@ -1,10 +1,8 @@
 #ifndef SEARCHBOOK_HPP_
 #define SEARCHBOOK_HPP_
 
-#include <string>
+#include "bookdata.hpp"
 
-using namespace std;
-
-void lookUpBook(int &bookNums);
+void lookUpBook(int &bookNums, bookType books[]);
 
 #endif

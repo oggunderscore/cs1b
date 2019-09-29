@@ -20,16 +20,14 @@
 
 using namespace std;
 
-extern bookType books[20];
 
-void bookInfo(int index) {
+void bookInfo(int index, bookType books[]) {
 	char reply; 
 	system("clear");
 
 	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
 	cout << "\t\t\t\t\t     Book Information\n\n";
 
-	//FIX ME
 	cout << "\t\t\t\t\t Title:              " << books[index].bookTitle << endl;
 	cout << "\t\t\t\t\t ISBN:               " << books[index].isbn << endl;
 	cout << "\t\t\t\t\t Author:             " << books[index].author << endl;

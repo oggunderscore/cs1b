@@ -1,6 +1,8 @@
 #ifndef CASHIER_HPP_
 #define CASHIER_HPP_
 
-void cashier(int &bookNums);
+#include "bookdata.hpp"
+
+void cashier(int &bookNums, bookType books[]);
 
 #endif

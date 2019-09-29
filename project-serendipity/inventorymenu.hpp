@@ -16,10 +16,8 @@
 #ifndef INVENTORYMENU_HPP_
 #define INVENTORYMENU_HPP_
 
-#include <string>
+#include "bookdata.hpp"
 
-using namespace std; 
-
-void invMenu(int &bookNums);
+void invMenu(int &bookNums, bookType books[]);
 
 #endif

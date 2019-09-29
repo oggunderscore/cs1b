@@ -7,9 +7,7 @@
 
 using namespace std; 
 
-extern bookType books[SIZE];
-
-void editBook(int &bookNums) {  
+void editBook(int &bookNums, bookType books[]) {  
 	char selectRecord; 
 	bool found = false;
     bool recordViewed = false;
@@ -137,14 +135,14 @@ void editBook(int &bookNums) {
                                 case '9':
                                     system("clear");
                                     
-                                    setTitle(tempBookTitle, bookNums);
-                                    setISBN(tempISBN, bookNums);
-                                    setAuthor(tempAuthor, bookNums);
-                                    setPublisher(tempPublisher, bookNums);
-                                    setDateAdded(tempDateAdded, bookNums);
-                                    setQty(tempQtyOnHand, bookNums);
-                                    setWholesale(tempWholeSale, bookNums);
-                                    setRetail(tempRetail, bookNums);
+                                    setTitle(tempBookTitle, bookNums, books);
+                                    setISBN(tempISBN, bookNums, books);
+                                    setAuthor(tempAuthor, bookNums, books);
+                                    setPublisher(tempPublisher, bookNums, books);
+                                    setDateAdded(tempDateAdded, bookNums, books);
+                                    setQty(tempQtyOnHand, bookNums, books);
+                                    setWholesale(tempWholeSale, bookNums, books);
+                                    setRetail(tempRetail, bookNums, books);
                                     
                                     cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
                                             << "\t\t\t\t\t           Edit Book\n\n";

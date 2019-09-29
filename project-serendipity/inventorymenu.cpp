@@ -26,10 +26,11 @@
 #include "inventorymenu.hpp"
 #include "addbook.hpp"
 #include "searchbook.hpp"
+#include "bookdata.hpp"
 
 using namespace std;
 
-void invMenu (int &bookNums) {
+void invMenu (int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -61,10 +62,10 @@ void invMenu (int &bookNums) {
 
 		switch (choice) {
 			case '1': 
-				lookUpBook(bookNums);
+				lookUpBook(bookNums, books);
 				break;
 			case '2':
-				addBook(bookNums);
+				addBook(bookNums, books);
 				break;
 			case '3': 
 				system("clear");
@@ -98,6 +99,6 @@ void invMenu (int &bookNums) {
 					break;
 				}
 		}
-	} while (exit != true);
+	} while (!exit);
 	
 }
