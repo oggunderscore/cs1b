@@ -4,37 +4,35 @@
 
 using namespace std;
 
-extern bookType books[20];
-
-void setTitle (string title, int index) {
+void setTitle (string title, int index, bookType books[]) {
     books[index].bookTitle = title;
 }
 
-void setISBN (string isbn, int index) {
+void setISBN (string isbn, int index, bookType books[]) {
     books[index].isbn = isbn;
 }
 
-void setAuthor (string author, int index) {
+void setAuthor (string author, int index, bookType books[]) {
     books[index].author = author;
 }
 
-void setPublisher (string publisher, int index) {
+void setPublisher (string publisher, int index, bookType books[]) {
     books[index].publisher = publisher;
 }
 
-void setDateAdded (string date, int index) {
+void setDateAdded (string date, int index, bookType books[]) {
     books[index].dateAdded = date;
 }
 
-void setQty (int qty, int index) {
+void setQty (int qty, int index, bookType books[]) {
     books[index].qtyOnHand = qty;
 }
 
-void setWholesale (double wholesale, int index) {
+void setWholesale (double wholesale, int index, bookType books[]) {
     books[index].wholesale = wholesale;
 }
 
-void setRetail (double retail, int index) {
+void setRetail (double retail, int index, bookType books[]) {
     books[index].retail = retail;
 }
 

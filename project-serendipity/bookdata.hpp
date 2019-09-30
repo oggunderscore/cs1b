@@ -16,13 +16,13 @@ struct bookType {
     double retail;
 };
 
-void setTitle (string title, int index);
-void setISBN (string isbn, int index);
-void setAuthor (string author, int index);
-void setPublisher (string publisher, int index);
-void setDateAdded (string date, int index);
-void setQty (int qty, int index);
-void setWholesale (double wholesale, int index);
-void setRetail (double retail, int index);
+void setTitle (string title, int index, bookType books[]);
+void setISBN (string isbn, int index, bookType books[]);
+void setAuthor (string author, int index, bookType books[]);
+void setPublisher (string publisher, int index, bookType books[]);
+void setDateAdded (string date, int index, bookType books[]);
+void setQty (int qty, int index, bookType books[]);
+void setWholesale (double wholesale, int index, bookType books[]);
+void setRetail (double retail, int index, bookType books[]);
 
 #endif

@@ -1,10 +1,8 @@
 #ifndef EDITBOOK_HPP_
 #define EDITBOOK_HPP_
 
-#include <string>
+#include "bookdata.hpp"
 
-using namespace std;
-
-void editBook(int &bookNums);
+void editBook(int &bookNums, bookType books[]);
 
 #endif
