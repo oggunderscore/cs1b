@@ -5,7 +5,8 @@
 
 using namespace std;
 
-struct bookType {
+struct bookType
+{
     string bookTitle;
     string isbn;
     string author;

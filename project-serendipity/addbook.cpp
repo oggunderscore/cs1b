@@ -7,24 +7,24 @@
 //  Creation Date: 8/30/19
 //  Date of Last Modification: 9/8/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will allow the user to add books to the database. 
+//  Purpose: This program will allow the user to add books to the database.
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      Step 1: Display Menu Options to the console and prompt user to make 
+//  Algorithm:
+//      Step 1: Display Menu Options to the console and prompt user to make
 //              a selection.
 //      Step 2: Recieve user input for option.
-//      Step 3: Switch in user input and switchs to the relevent screen 
+//      Step 3: Switch in user input and switchs to the relevent screen
 //              to allow for user input for the selected data point.
-//      Step 4: Repeat steps 1 - 3 until user enters '0' to return to the 
-//              main menu. 
+//      Step 4: Repeat steps 1 - 3 until user enters '0' to return to the
+//              main menu.
 //--------------------------------------------------------------------------
 #include <iostream>
-#include <string> 
+#include <string>
 #include <iomanip>
 #include "addbook.hpp"
 #include "bookdata.hpp"
 
-using namespace std; 
+using namespace std;
 
 void addBook(int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
@@ -41,9 +41,9 @@ void addBook(int &bookNums, bookType books[]) {
 	//  recoredViewed       bool               false
 	//  reply               char   			    null
 	//  temp               string               null
-	//  searchTitle        string               null            
+	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
-	
+
 	bool empty = false;
 	bool exit = false;
 	int index = 0;
@@ -81,111 +81,114 @@ void addBook(int &bookNums, bookType books[]) {
 			cout << "\t\t\t\t\t\tChoice (0-9): ";
 			cin >> choice;
 
-			switch(choice) {
-				case '1':
+			switch (choice)
+			{
+			case '1':
+				system("clear");
+				cout << "\n\tInput Book Title: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				getline(cin, tempBookTitle);
+				break;
+			case '2':
+				system("clear");
+				cout << "\n\tInput ISBN: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				getline(cin, tempISBN);
+				break;
+			case '3':
+				system("clear");
+				cout << "\n\tInput Author: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				getline(cin, tempAuthor);
+				break;
+			case '4':
+				system("clear");
+				cout << "\n\tInput Publisher: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				getline(cin, tempPublisher);
+				break;
+			case '5':
+				system("clear");
+				cout << "\n\tInput Date: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				getline(cin, tempDateAdded);
+				break;
+			case '6':
+				system("clear");
+				cout << "\n\tInput Quantity on Hand: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				cin >> tempQtyOnHand;
+				break;
+			case '7':
+				system("clear");
+				cout << "\n\tInput Wholesale Cost: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				cin >> tempWholeSale;
+				break;
+			case '8':
+				system("clear");
+				cout << "\n\tInput Retail Price: ";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				cin >> tempRetail;
+				break;
+			case '9':
+				if (bookNums == 20) {
 					system("clear");
-					cout << "\n\tInput Book Title: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					getline(cin, tempBookTitle);
+					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
+							<< "\t\t\t\t\t           Add Book\n\n";
+					cout << "\t\t\t\t\t    ERROR: Database Full.\n\n";
+					cout << "\t\t\t\t        Press any key to continue...";
+					cin >> reply; 
 					break;
-				case '2':
-					system("clear");
-					cout << "\n\tInput ISBN: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					getline(cin, tempISBN);
-					break;
-				case '3':
-					system("clear");
-					cout << "\n\tInput Author: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					getline(cin, tempAuthor);
-					break;
-				case '4':
-					system("clear");
-					cout << "\n\tInput Publisher: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					getline(cin, tempPublisher);
-					break;
-				case '5':
-					system("clear");
-					cout << "\n\tInput Date: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					getline(cin, tempDateAdded);
-					break;
-				case '6':
-					system("clear");
-					cout << "\n\tInput Quantity on Hand: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					cin >> tempQtyOnHand;
-					break;
-				case '7':
-					system("clear");
-					cout << "\n\tInput Wholesale Cost: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					cin >> tempWholeSale;
-					break;
-				case '8':
-					system("clear");
-					cout << "\n\tInput Retail Price: ";
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					cin >> tempRetail;
-					break;
-				case '9':
-					if (bookNums == 20) {
-						system("clear");
-						cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				             << "\t\t\t\t\t           Add Book\n\n";
-						cout << "\t\t\t\t\t    ERROR: Database Full.\n\n";
-						cout << "\t\t\t\t        Press any key to continue...";
-						cin >> reply; 
-						break;
-					}
-					system("clear");
-					
-					setTitle(tempBookTitle, bookNums, books);
-					setISBN(tempISBN, bookNums, books);
-					setAuthor(tempAuthor, bookNums, books);
-					setPublisher(tempPublisher, bookNums, books);
-					setDateAdded(tempDateAdded, bookNums, books);
-					setQty(tempQtyOnHand, bookNums, books);
-					setWholesale(tempWholeSale, bookNums, books);
-					setRetail(tempRetail, bookNums, books);
-					bookNums++;
+				}
+				system("clear");
+				
+				setTitle(tempBookTitle, bookNums, books);
+				setISBN(tempISBN, bookNums, books);
+				setAuthor(tempAuthor, bookNums, books);
+				setPublisher(tempPublisher, bookNums, books);
+				setDateAdded(tempDateAdded, bookNums, books);
+				setQty(tempQtyOnHand, bookNums, books);
+				setWholesale(tempWholeSale, bookNums, books);
+				setRetail(tempRetail, bookNums, books);
+				bookNums++;
 
-					tempBookTitle = "EMPTY";
-					tempISBN = "EMPTY";
-					tempAuthor = "EMPTY";
-					tempPublisher = "EMPTY";
-					tempDateAdded = "EMPTY";
-					tempQtyOnHand = 0;
-					tempWholeSale = 0;
-					tempRetail = 0;
-					
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				         << "\t\t\t\t\t           Add Book\n\n";
-					cout << "\t\t\t\t             Save was successful.\n\n";
-					cout << "\t\t\t\t        Press any key to continue...";
-					cin >> reply; 
-					cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
-					break;
-				case '0':
-					exit = true;
-					break;
-				default:
-					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				         << "\t\t\t\t\t           Add Book\n";
-					cout << "\n\t\t\t\t     ERROR: Choice must be a number 0 - 9.\n\n";
-					cout << "\t\t\t\t        Press any key to continue...";
-					cin >> reply; 
+				tempBookTitle = "EMPTY";
+				tempISBN = "EMPTY";
+				tempAuthor = "EMPTY";
+				tempPublisher = "EMPTY";
+				tempDateAdded = "EMPTY";
+				tempQtyOnHand = 0;
+				tempWholeSale = 0;
+				tempRetail = 0;
+
+				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
+					 << "\t\t\t\t\t           Add Book\n\n";
+				cout << "\t\t\t\t             Save was successful.\n\n";
+				cout << "\t\t\t\t        Press any key to continue...";
+				cin >> reply;
+				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				break;
+			case '0':
+				exit = true;
+				break;
+			default:
+				system("clear");
+				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
+					 << "\t\t\t\t\t           Add Book\n";
+				cout << "\n\t\t\t\t     ERROR: Choice must be a number 0 - 9.\n\n";
+				cout << "\t\t\t\t        Press any key to continue...";
+				cin >> reply;
 			}
 		}
-	} else {
+	}
+	else
+	{
 		system("clear");
 		cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 			 << "\t\t\t\t\t           Add Book\n\n";
 		cout << "\t\t\t\t\t     ERROR: Database Full.\n\n";
 		cout << "\t\t\t\t        Press any key to continue...";
-		cin >> reply; 
-	}		
+		cin >> reply;
+	}
 }
