@@ -34,6 +34,17 @@
 using namespace std;
 
 void mainMenu (int &bookNum, bookType books[]) {
+    //--------------------------------------------------------------------------
+	// DATA DICTIONARY
+	//--------------------------------------------------------------------------
+	// VARIABLES
+	//
+	//   NAME              DATA TYPE         VALUE
+	//--------------------------------------------------------------------------
+	//  choice				char				null
+	//  reply              string   			null
+    //  shouldLoop          bool                true 
+	//--------------------------------------------------------------------------
     char choice;
     char reply;
     bool shouldLoop = true;
