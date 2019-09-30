@@ -10,8 +10,8 @@
 //  Purpose: This program will display the book information for the passed
 //           parameters.
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      Step 1: Display Book Information. 
+//  Algorithm:
+//      Step 1: Display Book Information.
 //--------------------------------------------------------------------------
 
 #include <iostream>
@@ -22,8 +22,9 @@ using namespace std;
 
 extern bookType books[20];
 
-void bookInfo(int index) {
-	char reply; 
+void bookInfo(int index)
+{
+	char reply;
 	system("clear");
 
 	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
@@ -39,10 +40,12 @@ void bookInfo(int index) {
 	cout << "\t\t\t\t\t Wholesale Cost:   $ " << books[index].retail << endl;
 	cout << "\t\t\t\t\t Retail Price:     $ " << books[index].retail << endl;
 
-	while (true) {
+	while (true)
+	{
 		cout << "\n\t\t\t\t        Press any key to continue...";
-		cin >> reply;		
-		if (reply != '\0'){ 
+		cin >> reply;
+		if (reply != '\0')
+		{
 			break;
 		}
 	}

@@ -9,8 +9,8 @@
 //--------------------------------------------------------------------------
 //  Purpose: Header file corresponding to invmenu.cpp
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      n/a 
+//  Algorithm:
+//      n/a
 //--------------------------------------------------------------------------
 
 #ifndef INVENTORYMENU_HPP_
@@ -18,7 +18,7 @@
 
 #include <string>
 
-using namespace std; 
+using namespace std;
 
 void invMenu(int &bookNums);
 

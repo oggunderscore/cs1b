@@ -7,10 +7,10 @@
 //  Creation Date: 8/24/19
 //  Date of Last Modification: 8/28/19
 //--------------------------------------------------------------------------
-//  Purpose: Runs the main method of the Serendipity store and calls the 
-//           main menu function.  
+//  Purpose: Runs the main method of the Serendipity store and calls the
+//           main menu function.
 //--------------------------------------------------------------------------
-//  Algorithm: 
+//  Algorithm:
 //      Step 1: Call menu() function.
 //--------------------------------------------------------------------------
 #include <iostream>
@@ -25,11 +25,12 @@ const int SIZE = 20;
 
 bookType books[SIZE];
 
-int main () {
-    
-    int bookCount = 0; 
+int main()
+{
 
-    mainMenu(bookCount); 
+    int bookCount = 0;
 
-    return 0; 
+    mainMenu(bookCount);
+
+    return 0;
 }

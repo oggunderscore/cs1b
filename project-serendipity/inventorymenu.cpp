@@ -7,18 +7,18 @@
 //  Creation Date: 8/24/19
 //  Date of Last Modification: 8/28/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will display the inventory database menu and 
-//           take user input for a menu selection. 
+//  Purpose: This program will display the inventory database menu and
+//           take user input for a menu selection.
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      Step 1: Display Menu Options to the console and prompt user to make 
+//  Algorithm:
+//      Step 1: Display Menu Options to the console and prompt user to make
 //              a selection.
 //      Step 2: Recieve user input for option.
 //      Step 3: Switch in user input and either display a temporary message
 //              informing the user of the choice they made or return to the
 // 				main menu.
-//      Step 4: Repeat steps 1 - 3 until user enters '5' to return to the 
-//              main menu. 
+//      Step 4: Repeat steps 1 - 3 until user enters '5' to return to the
+//              main menu.
 //--------------------------------------------------------------------------
 
 #include <iostream>
@@ -29,7 +29,8 @@
 
 using namespace std;
 
-void invMenu (int &bookNums) {
+void invMenu(int &bookNums)
+{
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -39,13 +40,14 @@ void invMenu (int &bookNums) {
 	//--------------------------------------------------------------------------
 	//  choice				char				null
 	//  exit                bool               false
-	//  reply              string   			null 
+	//  reply              string   			null
 	//--------------------------------------------------------------------------
 	char choice;
 	bool exit = false;
-	char reply; 
+	char reply;
 
-	do {
+	do
+	{
 		system("clear");
 		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 		cout << "\t\t\t\t\t      Inventory Database\n\n";
@@ -59,45 +61,48 @@ void invMenu (int &bookNums) {
 		cout << "\t\t\t\t\t     Enter Your Choice: ";
 		cin >> choice;
 
-		switch (choice) {
-			case '1': 
-				lookUpBook(bookNums);
+		switch (choice)
+		{
+		case '1':
+			lookUpBook(bookNums);
+			break;
+		case '2':
+			addBook(bookNums);
+			break;
+		case '3':
+			system("clear");
+			cout << "You entered choice 3...\n\n";
+			cout << "Press any key to continue...";
+			cin >> reply;
+			if (reply != '\0')
+			{
 				break;
-			case '2':
-				addBook(bookNums);
+			}
+			break;
+		case '4':
+			cout << "You entered choice 4...\n\n";
+			cout << "Press any key to continue...";
+			cin >> reply;
+			if (reply != '\0')
+			{
 				break;
-			case '3': 
-				system("clear");
-				cout << "You entered choice 3...\n\n";
-				cout << "Press any key to continue...";
-				cin >> reply;
-				if (reply != '\0'){ 
-					break;
-				}
+			}
+			break;
+		case '5':
+			exit = true;
+			break;
+		default:
+			system("clear");
+			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
+				 << "\t\t\t\t\t      Inventory Database\n";
+			cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
+			cout << "\t\t\t\t        Press any key to continue...";
+			cin >> reply;
+
+			if (reply != '\0')
+			{
 				break;
-			case '4': 
-				cout << "You entered choice 4...\n\n";
-				cout << "Press any key to continue...";
-				cin >> reply;
-				if (reply != '\0'){ 
-					break;
-				}
-				break;
-			case '5': 
-				exit = true;
-				break; 
-			default: 
-				system("clear");
-				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-		             << "\t\t\t\t\t      Inventory Database\n";
-				cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
-				cout << "\t\t\t\t        Press any key to continue...";
-				cin >> reply;
-				
-				if (reply != '\0'){ 
-					break;
-				}
+			}
 		}
 	} while (exit != true);
-	
 }

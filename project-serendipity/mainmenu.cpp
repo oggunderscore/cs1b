@@ -8,17 +8,17 @@
 //  Date of Last Modification: 8/28/19
 //--------------------------------------------------------------------------
 //  Purpose: This program will display the main menu of the store and take
-//           user input to determine which store module function to call 
-//           and move the user to. 
+//           user input to determine which store module function to call
+//           and move the user to.
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      Step 1: Display Menu Options to the console and prompt user to make 
+//  Algorithm:
+//      Step 1: Display Menu Options to the console and prompt user to make
 //              a selection.
 //      Step 2: Recieve user input for option.
 //      Step 3: Switch in user input and either call function for the module
-//               corresponding with the given option or display error 
+//               corresponding with the given option or display error
 //               message if input is not '1', '2', '3', or '4'.
-//      Step 4: Repeat steps 1 - 3 until user enters '4' to quit. 
+//      Step 4: Repeat steps 1 - 3 until user enters '4' to quit.
 //--------------------------------------------------------------------------
 
 #include <iostream>
@@ -31,25 +31,27 @@
 #include "searchbook.hpp"
 #include "bookdata.hpp"
 
-using namespace std; 
+using namespace std;
 
-void mainMenu (int &bookNum) {
+void mainMenu(int &bookNum)
+{
     //--------------------------------------------------------------------------
-	// DATA DICTIONARY
-	//--------------------------------------------------------------------------
-	// VARIABLES
-	//
-	//   NAME              DATA TYPE         VALUE
-	//--------------------------------------------------------------------------
-	//  choice				char				null
-	//  reply              string   			null
-    //  shouldLoop          bool                true 
-	//--------------------------------------------------------------------------
+    // DATA DICTIONARY
+    //--------------------------------------------------------------------------
+    // VARIABLES
+    //
+    //   NAME              DATA TYPE         VALUE
+    //--------------------------------------------------------------------------
+    //  choice				char				null
+    //  reply              string   			null
+    //  shouldLoop          bool                true
+    //--------------------------------------------------------------------------
     char choice;
     char reply;
-    bool shouldLoop = true; 
+    bool shouldLoop = true;
 
-    do {
+    do
+    {
         system("clear");
         cout
             << "\t\t\t\t\t  Serendipity Book Sellers\n"
@@ -61,29 +63,31 @@ void mainMenu (int &bookNum) {
             << "\t\t\t\t\t     Enter Your Choice: ";
 
         cin >> choice;
-        
-        switch (choice) {
-            case '1':
-                cashier(bookNum);
+
+        switch (choice)
+        {
+        case '1':
+            cashier(bookNum);
+            break;
+        case '2':
+            invMenu(bookNum);
+            break;
+        case '3':
+            reportsMenu();
+            break;
+        case '4':
+            shouldLoop = false;
+            system("clear");
+            break;
+        default:
+            system("clear");
+            cout << "ERROR: Choice must be a number 1 - 4.\n\n";
+            cout << "Press any key to continue...";
+            cin >> reply;
+            if (reply != '\0')
+            {
                 break;
-            case '2': 
-                invMenu(bookNum);
-                break; 
-            case '3':
-                reportsMenu();
-                break;
-            case '4':
-                shouldLoop = false; 
-                system("clear");
-                break; 
-            default: 
-                system("clear");
-                cout << "ERROR: Choice must be a number 1 - 4.\n\n";
-                cout << "Press any key to continue...";
-				cin >> reply;
-				if (reply != '\0'){ 
-					break;
-				} 
+            }
         }
     } while (shouldLoop);
 }

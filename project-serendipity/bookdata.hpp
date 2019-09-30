@@ -5,7 +5,8 @@
 
 using namespace std;
 
-struct bookType {
+struct bookType
+{
     string bookTitle;
     string isbn;
     string author;
@@ -16,13 +17,13 @@ struct bookType {
     double retail;
 };
 
-void setTitle (string title, int index);
-void setISBN (string isbn, int index);
-void setAuthor (string author, int index);
-void setPublisher (string publisher, int index);
-void setDateAdded (string date, int index);
-void setQty (int qty, int index);
-void setWholesale (double wholesale, int index);
-void setRetail (double retail, int index);
+void setTitle(string title, int index);
+void setISBN(string isbn, int index);
+void setAuthor(string author, int index);
+void setPublisher(string publisher, int index);
+void setDateAdded(string date, int index);
+void setQty(int qty, int index);
+void setWholesale(double wholesale, int index);
+void setRetail(double retail, int index);
 
 #endif
