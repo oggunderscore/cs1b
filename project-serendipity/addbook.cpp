@@ -23,6 +23,7 @@
 #include <iomanip>
 #include "addbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
@@ -47,16 +48,16 @@ void addBook(int &bookNums, bookType books[]) {
 	bool empty = false;
 	bool exit = false;
 	int index = 0;
-	char reply;
 	char choice;
+	
 	string tempBookTitle = "EMPTY";
 	string tempISBN = "EMPTY";
 	string tempAuthor = "EMPTY";
 	string tempPublisher = "EMPTY";
 	string tempDateAdded = "EMPTY";
 	int tempQtyOnHand = 0;
-	double tempWholeSale;
-	double tempRetail;
+	double tempWholeSale = 0.0;
+	double tempRetail = 0.0;
 
 	if (bookNums < 20 - 1) {
 		while (!exit) {
@@ -137,8 +138,7 @@ void addBook(int &bookNums, bookType books[]) {
 					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 							<< "\t\t\t\t\t           Add Book\n\n";
 					cout << "\t\t\t\t\t    ERROR: Database Full.\n\n";
-					cout << "\t\t\t\t        Press any key to continue...";
-					cin >> reply; 
+					pause();
 					break;
 				}
 				system("clear");
@@ -165,8 +165,7 @@ void addBook(int &bookNums, bookType books[]) {
 				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 					 << "\t\t\t\t\t           Add Book\n\n";
 				cout << "\t\t\t\t             Save was successful.\n\n";
-				cout << "\t\t\t\t        Press any key to continue...";
-				cin >> reply;
+				pause();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
 				break;
 			case '0':
@@ -177,8 +176,7 @@ void addBook(int &bookNums, bookType books[]) {
 				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 					 << "\t\t\t\t\t           Add Book\n";
 				cout << "\n\t\t\t\t     ERROR: Choice must be a number 0 - 9.\n\n";
-				cout << "\t\t\t\t        Press any key to continue...";
-				cin >> reply;
+				pause();
 			}
 		}
 	}
@@ -188,7 +186,6 @@ void addBook(int &bookNums, bookType books[]) {
 		cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 			 << "\t\t\t\t\t           Add Book\n\n";
 		cout << "\t\t\t\t\t     ERROR: Database Full.\n\n";
-		cout << "\t\t\t\t        Press any key to continue...";
-		cin >> reply;
+		pause();
 	}
 }

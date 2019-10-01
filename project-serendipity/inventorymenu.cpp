@@ -27,6 +27,7 @@
 #include "addbook.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
@@ -44,7 +45,6 @@ void invMenu (int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	char choice;
 	bool exit = false;
-	char reply;
 
 	do
 	{
@@ -72,21 +72,12 @@ void invMenu (int &bookNums, bookType books[]) {
 		case '3':
 			system("clear");
 			cout << "You entered choice 3...\n\n";
-			cout << "Press any key to continue...";
-			cin >> reply;
-			if (reply != '\0')
-			{
-				break;
-			}
+			pause();
 			break;
 		case '4':
+			system("clear");
 			cout << "You entered choice 4...\n\n";
-			cout << "Press any key to continue...";
-			cin >> reply;
-			if (reply != '\0')
-			{
-				break;
-			}
+			pause();
 			break;
 		case '5':
 			exit = true;
@@ -96,13 +87,8 @@ void invMenu (int &bookNums, bookType books[]) {
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 				 << "\t\t\t\t\t      Inventory Database\n";
 			cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
-			cout << "\t\t\t\t        Press any key to continue...";
-			cin >> reply;
-
-			if (reply != '\0')
-			{
-				break;
-			}
+			pause();
+			break;
 		}
 	} while (!exit);
 	

@@ -17,12 +17,12 @@
 #include <iostream>
 #include "bookinfo.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
 
 void bookInfo(int index, bookType books[]) {
-	char reply; 
 	system("clear");
 
 	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
@@ -39,11 +39,7 @@ void bookInfo(int index, bookType books[]) {
 
 	while (true)
 	{
-		cout << "\n\t\t\t\t        Press any key to continue...";
-		cin >> reply;
-		if (reply != '\0')
-		{
-			break;
-		}
+		pause();
+		break;
 	}
 }

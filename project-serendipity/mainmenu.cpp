@@ -30,6 +30,7 @@
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
@@ -46,7 +47,6 @@ void mainMenu (int &bookNum, bookType books[]) {
     //  shouldLoop          bool                true 
 	//--------------------------------------------------------------------------
     char choice;
-    char reply;
     bool shouldLoop = true;
 
     do
@@ -81,12 +81,8 @@ void mainMenu (int &bookNum, bookType books[]) {
         default:
             system("clear");
             cout << "ERROR: Choice must be a number 1 - 4.\n\n";
-            cout << "Press any key to continue...";
-            cin >> reply;
-            if (reply != '\0')
-            {
-                break;
-            }
+            pause();
+            break;
         }
     } while (shouldLoop);
 }

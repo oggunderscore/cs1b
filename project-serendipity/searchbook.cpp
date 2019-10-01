@@ -24,6 +24,7 @@
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
@@ -50,7 +51,6 @@ void lookUpBook(int &bookNums, bookType books[]) {
 	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
 
-	char reply;
 	char selectRecord;
 	bool recordViewed = false;
 	bool found = false;
@@ -116,12 +116,8 @@ void lookUpBook(int &bookNums, bookType books[]) {
 						cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 						cout << "\t\t\t\t\t         Book Search\n\n";
 						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
-						cout << "\t\t\t\t        Press any key to continue...";
-						cin >> reply;
-						if (reply != '\0')
-						{
-							continue;
-						}
+						pause();
+						continue;
 					}
 				}
 				if (recordViewed)
@@ -141,15 +137,13 @@ void lookUpBook(int &bookNums, bookType books[]) {
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
 			cout << "\t\t\t\t\t         Book Search\n\n";
 			cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
-			cout << "\t\t\t\t        Press any key to continue...";
-			cin >> reply;
+			pause();
 		}
 		//temp = "";
 	}
 	else
 	{
 		cout << "\t\t\t\t    No books currently in the database!\n\n";
-		cout << "\t\t\t\t        Press any key to continue...";
-		cin >> reply;
+		pause();
 	}
 }
