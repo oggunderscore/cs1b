@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------
-//  File name: studentType.cpp
+//  File name: professorType.cpp
 //  Project name: Inheritance
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
@@ -23,21 +23,21 @@
 //--------------------------------------------------------------------------
 #include <iostream>
 #include <string>
-#include "studentType.h"
 #include "personType.h"
+#include "professorType.h"
 
 using namespace std;
 
     //--------------------------------------------------------------------------
     //  Function: equals
     //--------------------------------------------------------------------------
-    //  Purpose: Compares whether two students are the same by looking at each
+    //  Purpose: Compares whether two professors are the same by looking at each
     //           attribute individually.
     //--------------------------------------------------------------------------
-    bool studentType::equals(studentType student) {
-        if(getGPA() == student.getGPA() 
-            && getID() == student.getID() 
-            && getClassification() == student.getClassification()
+    bool professorType::equals(professorType professor) {
+        if(getEmployeeID() == professor.getEmployeeID() 
+            && getDepartment() == professor.getDepartment() 
+            && getDegree() == professor.getDegree()
             ) {
             return true;
         } else {
@@ -47,71 +47,69 @@ using namespace std;
     /***************** Constructors *********************/
 
 
-    studentType::studentType(){
-        studentType::setInfo(0.0, "DEFAULT-STANDING", "DEFAULT-ID");
+    professorType::professorType(){
+        professorType::setInfo("DEFAULT-EMPLOYEE-ID", "DEFAULT-DEPARTMENT", "DEFAULT-DEGREE");
     }
 
-    studentType::studentType(string fName, string lName)
+    professorType::professorType(string fName, string lName)
                 :personType(fName, lName) {
-        studentType::setInfo(0.0, "DEFAULT-STANDING", "DEFAULT-ID");
+        professorType::setInfo("DEFAULT-EMPLOYEE-ID", "DEFAULT-DEPARTMENT", "DEFAULT-DEGREE");
     }
 
-    studentType::studentType(string nameF, string nameL, 
-                                double grade, 
-                                string standing, string identify)
+    professorType::professorType(string nameF, string nameL, 
+                                string id, 
+                                string subject, string diploma)
                 : personType(nameF, nameL) {
-        studentType::setInfo(grade, standing, identify);    
+        professorType::setInfo(id, subject, diploma); 
     }
 
-    studentType::studentType(string initFName, string initLName, string initAddress,
+    professorType::professorType(string initFName, string initLName, string initAddress,
                                 double initHeight, string initDob, 
-                                char initGender, double grade, 
-                                string standing, string identify)
+                                char initGender, string id, 
+                                string subject, string diploma)
                 : personType(initFName, 
                                 initLName, 
                                 initAddress,
                                 initHeight,
                                 initDob, 
                                 initGender) {
-        studentType::setInfo(grade, standing, identify);
+        professorType::setInfo(id, subject, diploma);
     }
     /***************** Mutator Functions *********************/
 
-    void studentType::setInfo(double grade, 
-                                string standing, 
-                                string identify) {
-        gpa = grade;
-        classification = standing;
-        id = identify;	
+    void professorType::setInfo(string id, 
+                                string subject, 
+                                string diploma) {
+        employeeID = id;
+        department = subject;
+        degree = diploma;
     }
 
     /********************* Accessor Functions *********************/
 
-    double studentType::getGPA() {
-        return gpa;
+    string professorType::getEmployeeID() {
+        return employeeID;
     }
 
-    string studentType::getID() {
-        return id;
+    string professorType::getDepartment() {
+        return department;
     }
 
-    string studentType::getClassification() {
-        return classification;
+    string professorType::getDegree() {
+        return degree;
     }
 
     //--------------------------------------------------------------------------
     //  Function: print
     //--------------------------------------------------------------------------
-    //  Purpose: Calls the personType print() method and then outputs the ID, 
-    //           GPA, and Classification of the student to the console.
+    //  Purpose: Calls the professorType print() method and then outputs the ID, 
+    //           Department, and Degree level of the professor to the console.
     //--------------------------------------------------------------------------
-    void studentType::print() {
+    void professorType::print() {
         personType::print();
-        cout << fixed;
-        cout.precision(2);
-        cout << "ID: " << getID() << "\n" << "GPA: " << getGPA() 
-                << "\n" << "Classification: " << getClassification()
+        cout << "Employee ID: " << getEmployeeID() << "\n" << "Department: " << getDepartment() 
+                << "\n" << "Degree: " << getDegree()
                 << "\n\n"; 
     }
-    
+
 

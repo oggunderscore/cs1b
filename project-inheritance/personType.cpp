@@ -7,15 +7,14 @@
 //  Creation Date: 9/20/19
 //  Date of Last Modification: 9/22/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will hardcode 3 people of type studentType using 
-//           the studentType class and inherit from the personType class
-//           the attributes of a person. The program will then print out the
-//           students and people and make comparisons amongst the 3 students 
-//           to test the equals function override in studentType.
+//  Purpose: This program will create 5 people:
+//           (1 personType, 2 studentType, 2 professorType)
+//           and output each of them to the console as well as calling the 
+//           equals() function on the 2 students.
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Initialize the personType, studentType variables 
-//              and clear the console. 
+//      Step 1: Initialize the personType, studentType, and professorType 
+//       variables and clear the console. 
 //      Step 2: Set the information for the variables using relevent 
 //              constructors.
 //      Step 3: Print out the variables using the print function.

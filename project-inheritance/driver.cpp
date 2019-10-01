@@ -7,15 +7,14 @@
 //  Creation Date: 9/20/19
 //  Date of Last Modification: 9/22/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will hardcode 3 people of type studentType using 
-//           the studentType class and inherit from the personType class
-//           the attributes of a person. The program will then print out the
-//           students and people and make comparisons amongst the 3 students 
-//           to test the equals function override in studentType.
+//  Purpose: This program will create 5 people:
+//           (1 personType, 2 studentType, 2 professorType)
+//           and output each of them to the console as well as calling the 
+//           equals() function on the 2 students.
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Initialize the personType, studentType variables 
-//              and clear the console. 
+//      Step 1: Initialize the personType, studentType, and professorType 
+//       variables and clear the console. 
 //      Step 2: Set the information for the variables using relevent 
 //              constructors.
 //      Step 3: Print out the variables using the print function.
@@ -25,6 +24,7 @@
 #include <iostream>
 #include "personType.h"
 #include "studentType.h"
+#include "professorType.h"
 
 using namespace std; 
 
@@ -33,19 +33,17 @@ int main() {
     system("clear");
 
     studentType student1("Felix", "Murray", "25671 Good Street", 75.5, "5/11/2000", 'M', 3.4, "Sophmore", "1111499");
-	studentType student2("Felix", "Murray", "25671 Good Street", 75.5, "5/11/2000", 'M', 3.4, "Sophmore", "1111499");
-	studentType student3("John", "Smith", "2000 West Coast Road", 6.9, "12/12/1999", 'F', 3.8, "Senior", "1111111");
-	personType person1("Donald", "Bain", "20201 Hollywood Avenue", 60.6, "2/20/1991", 'M');
-	personType person2("Karen", "Spivak", "1 Space Park Blvd", 90.1, "1/1/1981", 'F');
+    studentType student2("Jude", "McCartney", "Penny Lane", 40.5, "4/13/1969", 'F', 2.6, "Junior", "46638596");
+    personType person1("Donald", "Bain", "20201 Hollywood Avenue", 60.6, "2/20/1991", 'M');
+    professorType professor1("Jedidiah", "Smith", "28000 Maggy Pkwy", 85.5, "2/16/1999", 'M', "11413431", "Humanities", "Master's of Arts");
+    professorType professor2("Jedidiah", "Smith", "28000 Maggy Pkwy", 85.5, "2/16/1999", 'M', "11413431", "Humanities", "Master's of Arts");
 	
 	student1.print();
-	//cout << "\n\n";
 	student2.print();
-	//cout << "\n\n";
-	student3.print();
-	//cout << "\n\n";
-    person1.print();
-    cout << "\n\n";
+	person1.print();
+    cout << "\n";
+    professor1.print();
+    professor2.print();
 
     cout << "Comparing student1 & student2..."
          << "\n";
@@ -58,30 +56,24 @@ int main() {
              << "\n\n";
     }
 
-    cout << "Comparing student1 & student3..."
+    cout << "Comparing professor1 & professor2..."
          << "\n";
 
-    if (student1.equals(student3)) {
-		cout << "These Students are the same person."
+    if (professor1.equals(professor2)) {
+		cout << "These Professors are the same person."
              << "\n\n";
 	} else {
-        cout << "These Students are different."
+        cout << "These Professors are different."
              << "\n\n";
     }
 
-    cout << "Comparing student2 & student3..."
-         << "\n";
-
-    if (student2.equals(student3)) {
-		cout << "These Students are the same person."
-             << "\n";
-	} else {
-        cout << "These Students are different."
-             << "\n\n";
-    }
-
-	cout << "Press any key to continue...";
-	cin >> reply;
+	 #ifdef _WIN32
+        // pause on windows
+        system("pause");
+    #else
+        // on unix systems, read one character and then continue
+        system("read -n 1 -s -p \"Press any key to continue...\"");
+    #endif
 	system("clear");
 
     return 0;

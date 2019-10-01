@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------
-//  File name: studentType.h
+//  File name: professorType.h
 //  Project name: Inheritance
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
@@ -21,15 +21,15 @@
 //      Step 4: Prompt the user to "Press any key to continue..." and clear
 //              console once input has been recieved.
 //--------------------------------------------------------------------------
-#ifndef STUDENTTYPE_H
-#define STUDENTTYPE_H
+#ifndef PROFESSORTYPE_H
+#define PROFESSORTYPE_H
 
 #include <iostream>
 #include "personType.h"
 
 using namespace std;
 
-class studentType : public personType{
+class professorType : public personType{
     public:
         //--------------------------------------------------------------------------
 	    // DATA DICTIONARY
@@ -38,47 +38,48 @@ class studentType : public personType{
 	    //
 	    //   NAME              DATA TYPE         VALUE
 	    //--------------------------------------------------------------------------
-	    //    id                 string           null
-        //    gpa                double           null
-        // classification        string           null
+	    //    employeeID         string           null
+        //    department         string           null
+        //    degree             string           null
 	    //--------------------------------------------------------------------------
 
         /***************** Constructors *********************/
         
-        studentType();
+        professorType();
 
         //fName, lName
-        studentType(string, string);
+        professorType(string, string);
 
-        // fName, lName, GPA, classification, id
-        studentType(string, string, double, string, string);
+        // fName, lName, employeeID, department, degree
+        professorType(string, string, string, string, string);
 
-        studentType(string, string, string, double, string, 
-                    char, double, string, string);
+        //super constructor including all personType attributes
+        professorType(string, string, string, double, string, 
+                    char, string, string, string);
         
               
         /***************** Mutator Functions *********************/
 
-        void setGPA(double);
-        void setID(string);
-        void setClassification(string);
-        void setInfo(double, string, string);
+        void setEmployeeID(string);
+        void setDepartment(string);
+        void setDegree(string);
+        void setInfo(string, string, string);
         
         /********************* Accessor Functions *********************/ 
 
-        double getGPA();
-        string getID();
-        string getClassification();
+        string getEmployeeID();
+        string getDepartment();
+        string getDegree();
         
         /********************* Override Functions *********************/ 
 
         void print() ; //override the parents' print method
-        bool equals(studentType);
+        bool equals(professorType);
         
     private:
-        string id; //added every id 'should' be unique
-        double gpa;
-        string classification;
+        string employeeID; //added every id 'should' be unique
+        string department;
+        string degree;
         
 };
 #endif
