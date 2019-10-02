@@ -25,6 +25,7 @@
 #include <string>
 #include "inventorymenu.hpp"
 #include "addbook.hpp"
+#include "editbook.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
 #include "util.hpp"
@@ -70,9 +71,7 @@ void invMenu (bookType books[]) {
 			addBook(books);
 			break;
 		case '3':
-			system("clear");
-			cout << "You entered choice 3...\n\n";
-			pause();
+			editBook(books);
 			break;
 		case '4':
 			system("clear");
