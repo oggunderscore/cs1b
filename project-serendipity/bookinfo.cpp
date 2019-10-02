@@ -17,29 +17,9 @@
 #include <iostream>
 #include "bookinfo.hpp"
 #include "bookdata.hpp"
-#include "util.hpp"
 
 using namespace std;
 
-
 void bookInfo(int index, bookType books[]) {
-	system("clear");
-
-	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
-	cout << "\t\t\t\t\t     Book Information\n\n";
-
-	cout << "\t\t\t\t\t Title:              " << books[index].bookTitle << endl;
-	cout << "\t\t\t\t\t ISBN:               " << books[index].isbn << endl;
-	cout << "\t\t\t\t\t Author:             " << books[index].author << endl;
-	cout << "\t\t\t\t\t Publisher:          " << books[index].publisher << endl;
-	cout << "\t\t\t\t\t Date Added:         " << books[index].dateAdded << endl;
-	cout << "\t\t\t\t\t Quantity on Hand:   " << books[index].qtyOnHand << endl;
-	cout << "\t\t\t\t\t Wholesale Cost:   $ " << books[index].retail << endl;
-	cout << "\t\t\t\t\t Retail Price:     $ " << books[index].retail << endl;
-
-	while (true)
-	{
-		pause();
-		break;
-	}
+	books[index].print();
 }

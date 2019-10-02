@@ -27,7 +27,7 @@
 
 using namespace std;
 
-void addBook(int &bookNums, bookType books[]) {
+void addBook(bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -45,7 +45,6 @@ void addBook(int &bookNums, bookType books[]) {
 	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
 
-	bool empty = false;
 	bool exit = false;
 	int index = 0;
 	char choice;
@@ -59,14 +58,14 @@ void addBook(int &bookNums, bookType books[]) {
 	double tempWholeSale = 0.0;
 	double tempRetail = 0.0;
 
-	if (bookNums < 20 - 1) {
+	if (books[0].getBookCount() < 19) {
 		while (!exit) {
 			system("clear");
 			cout << fixed;
 			cout.precision(2);
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 				 << "\t\t\t\t\t           Add Book\n"
-			     << "\t\t\t\t       Current Database Size: " << bookNums
+			     << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
 				 << " (Max 20)\n" << endl;
 			cout << "\t\t\t\t\t\t\t\t     + Pending Values +" << endl;
 			cout << "\t\t\t\t(1) Enter Book Title\t\t\t >   --" << tempBookTitle << endl;
@@ -133,7 +132,7 @@ void addBook(int &bookNums, bookType books[]) {
 				cin >> tempRetail;
 				break;
 			case '9':
-				if (bookNums == 20) {
+				if (books[0].getBookCount() == 20) {
 					system("clear");
 					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 							<< "\t\t\t\t\t           Add Book\n\n";
@@ -143,15 +142,15 @@ void addBook(int &bookNums, bookType books[]) {
 				}
 				system("clear");
 				
-				setTitle(tempBookTitle, bookNums, books);
-				setISBN(tempISBN, bookNums, books);
-				setAuthor(tempAuthor, bookNums, books);
-				setPublisher(tempPublisher, bookNums, books);
-				setDateAdded(tempDateAdded, bookNums, books);
-				setQty(tempQtyOnHand, bookNums, books);
-				setWholesale(tempWholeSale, bookNums, books);
-				setRetail(tempRetail, bookNums, books);
-				bookNums++;
+				books[books[0].getBookCount()].setAll(tempBookTitle,
+				                    tempISBN, 
+									tempAuthor, 
+									tempPublisher, 
+									tempDateAdded,
+									tempQtyOnHand,
+									tempWholeSale, 
+									tempRetail);
+				books[0].incBookCount();
 
 				tempBookTitle = "EMPTY";
 				tempISBN = "EMPTY";

@@ -31,7 +31,7 @@
 
 using namespace std;
 
-void invMenu (int &bookNums, bookType books[]) {
+void invMenu (bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -64,10 +64,10 @@ void invMenu (int &bookNums, bookType books[]) {
 		switch (choice)
 		{
 		case '1':
-			lookUpBook(bookNums, books);
+			lookUpBook(books);
 			break;
 		case '2':
-			addBook(bookNums, books);
+			addBook(books);
 			break;
 		case '3':
 			system("clear");

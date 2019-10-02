@@ -30,12 +30,13 @@
 #include "cashier.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
 #define SALES_TAX 0.06;
 
-void cashier (int &bookNums, bookType books[]) {
+void cashier (bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -55,200 +56,138 @@ void cashier (int &bookNums, bookType books[]) {
 	//  tax					   double			null
 	//  total 			       double   		null
 	//--------------------------------------------------------------------------
-	bool repeat = true;
-	bool buying = true;
 
-	char continueTransaction;
-	int quantity;
-	double subtotal;
-	double tax;
-	double total;
-	bool inputRecieved = false;
+    int index = 0;
+    int toBuy, qty;
+    char choice;
+    bool final;
+    bool escape;
+    
+    double subtotal, total, tax, tempTotal;
 
-	char reply;
-	char selectRecord;
-	bool purchaseMade = false;
-	bool found = false;
-	bool repeatTransaction = false;
-	// int index = 0;
-	string temp;
-	string searchTitle;
+    string bookToBuy[20];
+    string isbnToBuy[20];
+    double retailToBuy[20];
+    int qtyToBuy[20];
 
-newTransaction:
-	system("clear");
-	cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-	cout << "\t\t\t\t\t       Cashier Module\n\n";
+    if (books[0].getBookCount() != 0) {
+        flag:
+        system("clear"); 
+        cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+        cout << "\t\t\t\t\t       Cashier Module\n\n";
+        cin.ignore();
 
-	cin.ignore();
+        toBuy = lookUpBookLogic(books, escape);
 
-	if (bookNums > 0)
-	{
-		cout << "\t\t\t   Enter the title or ISBN of the book to search for:\n";
-		cout << "\t\t\t\t\t\t      ";
+        while (books[toBuy].getQtyAdded() <= 0) {
+            system("clear");
+            cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+            cout << "\t\t\t\t\t       Cashier Module\n\n";
+            cout << "\t\t\t Book is no longer in stock. Please search for a book in stock.\n";
+            pause();
 
-		getline(cin, searchTitle);
+            system("clear");
+            cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+            cout << "\t\t\t\t\t       Cashier Module\n\n";
+            toBuy = lookUpBookLogic(books, escape);
+        }
+        
+        while (toBuy == -1 && escape) {
+            system("clear");
+            cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+            cout << "\t\t\t\t\t       Cashier Module\n\n";
+            cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
+            pause();
 
-		for (int i = 0; i < searchTitle.length(); i++)
-		{
-			searchTitle[i] = tolower(searchTitle[i]);
-		}
+            system("clear");
+            cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+            cout << "\t\t\t\t\t         Book Search\n\n";
+            toBuy = lookUpBookLogic(books, escape);
+        }
 
-		for (int index = 0; index < bookNums; index++)
-		{
-			if (repeatTransaction)
-			{
-				index = 0;
-				repeatTransaction = false;
-				double subtotal = 0;
-				double tax = 0;
-				double total = 0;
-				bool inputRecieved = false;
-			}
+        while (!escape) {
+            cout << "\t\t\t\t    How Many Copies? (Current Qty: "
+                    << books[toBuy].getQtyAdded() << " ): ";
+            cin >> qty;
+            if (qty > books[toBuy].getQtyAdded() || qty <= 0) {
+                system("clear");
+                cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+                cout << "\t\t\t\t\t       Cashier Module\n\n";
+                cout << "\t\t\t\t       ERROR: Quantity Not Valid\n\n";
+                pause();
+                continue;
+            } else {
+                    cout << "\n\t\t\t\t     Added to cart. Buy another? (Y/N) ";
+                    cin >> choice;
 
-			temp = "";
-			for (int indexInner = 0; indexInner < books[index].bookTitle.length(); indexInner++)
-			{
-				temp.append(1, tolower(books[index].bookTitle.at(indexInner)));
-			}
-			//uncomment below if temp value seems to be causing issues
-			//cout << temp << " " << "\n" << index << " ";
-			if (temp.find(searchTitle) != string::npos)
-			{
-				found = true;
+                    if (choice == 'y' || choice == 'Y') {
+                        books[toBuy].setQty(books[toBuy].getQtyAdded() - qty);
+                        subtotal += qty * books[toBuy].getRetail();
 
-				while (true)
-				{
-				copyError:
-					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-					cout << "\t\t\t\t\t       Cashier Module\n\n";
-					cout << "\t\t\t\t\t      RESULT>: " << books[index].bookTitle << "\n\n";
-					cout << "\t\t\t\t\t    Buy this book? (Y/N): ";
-					cin >> selectRecord;
-					cin.ignore(600, '\n');
+                        bookToBuy[index] = books[toBuy].getBookTitle();
+                        isbnToBuy[index] = books[toBuy].getISBN();
+                        retailToBuy[index] = books[toBuy].getRetail();
+                        qtyToBuy[index] = qty;
 
-					if (selectRecord == 'Y' || selectRecord == 'y')
-					{
-						purchaseMade = true;
-						cout << "\t\t\t\t\t    How Many Copies? (Current Qty: "
-							 << books[index].qtyOnHand << " ): ";
-						cin >> quantity;
-						if (quantity > books[index].qtyOnHand || quantity <= 0)
-						{
-							system("clear");
-							cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-							cout << "\t\t\t\t\t       Cashier Module\n\n";
-							cout << "\t\t\t\t       ERROR: Quantity Not Valid\n\n";
-							cout << "\t\t\t\t        Press any key to continue...";
-							cin >> reply;
-							if (reply != '\0')
-							{
-								goto copyError;
-							}
-						}
-						cin.ignore(600, '\n');
+                        index++;
+                        goto flag;
+                    } else if (choice == 'n' || choice == 'N') {
+                        books[toBuy].setQty(books[toBuy].getQtyAdded() - qty);
+                        subtotal += qty * books[toBuy].getRetail();
 
-						subtotal = quantity * books[index].retail;
-						tax = subtotal * SALES_TAX;
-						total = subtotal + tax;
-						books[index].qtyOnHand = books[index].qtyOnHand - quantity;
+                        bookToBuy[index] = books[toBuy].getBookTitle();
+                        isbnToBuy[index] = books[toBuy].getISBN();
+                        retailToBuy[index] = books[toBuy].getRetail();
+                        qtyToBuy[index] = qty;
 
-						system("clear");
+                        index++;
+                        final = true;
+                    }
+                    
+                    if (final) {
+                        tax = subtotal * SALES_TAX;
+                        total = subtotal + tax;
 
-						//System Time for Current Date
-						time_t now = time(0);
-						char *dt = ctime(&now);
+                        //PRINT RECIEPT START
+                        time_t now = time(0);
+                        char *dt = ctime(&now);
 
-						cout << "Date: " << dt << " \n\n";
+                        system("clear");
+                        cout << "Date: " << dt << " \n\n";
 
-						cout << "Qty\tISBN\t\tTitle\t\t\t\tPrice\t\tTotal\n";
-						cout << "_______________________________________________________________________________";
-						cout << "\n\n\n";
+                        cout << "Qty\tISBN\t\tTitle\t\t\t\tPrice\t\tTotal\n";
+                        cout << "_______________________________________________________________________________";
+                        cout << "\n\n\n";
 
-						//inline information
-						cout << quantity << "\t";									  //display quantity
-						cout << left << setw(14) << books[index].isbn << "\t";		  //display ISBN
-						cout << left << setw(26) << books[index].bookTitle << "\t$ "; //displays title
-						cout << fixed << showpoint << right << setprecision(2);		  //set up number formatting
-						cout << setw(6) << books[index].retail << "\t$ ";			  //display price
-						cout << setw(6) << subtotal << "\n\n\n";					  //display subtotal in line
+                        //doesn't work?
+                        for (int j = 0; j < index; j++) {
+                            //inline information
+                            cout << qtyToBuy[index] << "\t";						       //display quantity
+                            cout << left << setw(14) << isbnToBuy[index] << "\t";		  //display ISBN
+                            cout << left << setw(26) << bookToBuy[index] << "\t$ ";       //displays title
+                            cout << fixed << showpoint << right << setprecision(2);		  //set up number formatting
+                            cout << setw(6) << retailToBuy[index] << "\t\n\n";			  //display price
+                        }
 
-						//calculated totals
-						cout << "\t\tSubtotal\t\t\t\t\t\t$ ";
-						cout << setw(6) << subtotal << "\n";
-						cout << "\t\tTax\t\t\t\t\t\t\t$ ";
-						cout << setw(6) << tax << "\n";
-						cout << "\t\tTotal\t\t\t\t\t\t\t$ ";
-						cout << setw(6) << total << "\n\n";
-						cout << "_______________________________________________________________________________";
-						cout << "\n\nThank you for shopping at Serendipity!\n";
-						break;
-					}
-					else if (selectRecord == 'N' || selectRecord == 'n')
-					{
-						break;
-					}
-					else
-					{
-						system("clear");
-						cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-						cout << "\t\t\t\t\t       Cashier Module\n\n";
-						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
-						cout << "\t\t\t\t        Press any key to continue...";
-						cin >> reply;
-						if (reply != '\0')
-						{
-							continue;
-						}
-					}
-				}
-				if (purchaseMade)
-				{
-					while (!inputRecieved)
-					{
-						cout << "\n\nWould you like to make another transaction? (Y/N): ";
-						cin >> continueTransaction;
-						if (continueTransaction == 'n' || continueTransaction == 'N')
-						{
-							inputRecieved = true;
-							break;
-						}
-						else if (continueTransaction == 'y' || continueTransaction == 'Y')
-						{
-							inputRecieved = true;
-							repeatTransaction = true;
-							goto newTransaction;
-						}
-						else
-						{
-							system("clear");
-							cout << "ERROR: Choice must be either y or n.";
-							continue;
-						}
-					}
-				}
-			}
-			if (index > bookNums - 1)
-			{
-				found = false;
-			}
-		}
-
-		if (!found)
-		{
-			system("clear");
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-			cout << "\t\t\t\t\t       Cashier Module\n\n";
-			cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
-			cout << "\t\t\t\t        Press any key to continue...";
-			cin >> reply;
-		}
-		//temp = "";
-	}
-	else
-	{
-		cout << "\t\t\t\t    No books currently in the database!\n\n";
-		cout << "\t\t\t\t        Press any key to continue...";
-		cin >> reply;
-	}
+                        cout << "\t\tSubtotal\t\t\t\t\t\t$ ";
+                        cout << setw(6) << subtotal << "\n";
+                        cout << "\t\tTax\t\t\t\t\t\t\t$ ";
+                        cout << setw(6) << tax << "\n";
+                        cout << "\t\tTotal\t\t\t\t\t\t\t$ ";
+                        cout << setw(6) << total << "\n\n";
+                        cout << "_______________________________________________________________________________";
+                        cout << "\n\nThank you for shopping at Serendipity!\n\n";
+                        pause();
+                        break;
+                        //PRINT RECIEPT END
+                    }
+            }
+        }
+    } else {
+        system("clear");
+        cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
+        cout << "\t\t\t\t\t       Cashier Module\n\n";
+        cout << "\t\t\t\t    No books currently in the database!\n\n";
+	    pause();
+    } 
 }

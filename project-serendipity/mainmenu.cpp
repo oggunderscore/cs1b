@@ -34,7 +34,7 @@
 
 using namespace std;
 
-void mainMenu (int &bookNum, bookType books[]) {
+void mainMenu (bookType books[]) {
     //--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -66,10 +66,10 @@ void mainMenu (int &bookNum, bookType books[]) {
         switch (choice)
         {
         case '1':
-            cashier(bookNum, books);
+            cashier(books);
             break;
         case '2':
-            invMenu(bookNum, books);
+            invMenu(books);
             break;
         case '3':
             reportsMenu();

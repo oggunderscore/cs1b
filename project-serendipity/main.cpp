@@ -24,9 +24,7 @@ using namespace std;
 int main () {
     bookType books[20];
 
-    int bookCount = 0; 
-
-    mainMenu(bookCount, books); 
+    mainMenu(books); 
 
     return 0;
 }

@@ -3,6 +3,6 @@
 
 #include "bookdata.hpp"
 
-void cashier(int &bookNums, bookType books[]);
+void cashier(bookType books[]);
 
 #endif
