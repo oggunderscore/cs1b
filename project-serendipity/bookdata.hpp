@@ -35,7 +35,6 @@ class bookType
         int getQtyAdded();
         double getWholesale();
         double getRetail();
-        //static int getBookCount();
 
         void print();
 		static void incBookCount();

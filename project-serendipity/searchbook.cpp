@@ -58,8 +58,9 @@ int lookUpBookLogic(bookType books[], bool &wantExit)
 				}
 				else if (selection == 'N' || selection == 'n')
 				{
-					break;
 					wantExit = true;
+					break;
+					
 				}
 				else
 				{

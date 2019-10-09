@@ -58,7 +58,7 @@ void addBook(bookType books[]) {
 	double tempWholeSale = 0.0;
 	double tempRetail = 0.0;
 
-	if (books[0].getBookCount() < 19) {
+	if (books[0].getBookCount() < 20) {
 		while (!exit) {
 			system("clear");
 			cout << fixed;
@@ -132,14 +132,6 @@ void addBook(bookType books[]) {
 				cin >> tempRetail;
 				break;
 			case '9':
-				if (books[0].getBookCount() == 20) {
-					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-							<< "\t\t\t\t\t           Add Book\n\n";
-					cout << "\t\t\t\t\t    ERROR: Database Full.\n\n";
-					pause();
-					break;
-				}
 				system("clear");
 				
 				books[books[0].getBookCount()].setAll(tempBookTitle,
@@ -166,6 +158,10 @@ void addBook(bookType books[]) {
 				cout << "\t\t\t\t             Save was successful.\n\n";
 				pause();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
+				if (books[0].getBookCount() == 20) {
+					exit = true; 
+					break;
+				}
 				break;
 			case '0':
 				exit = true;

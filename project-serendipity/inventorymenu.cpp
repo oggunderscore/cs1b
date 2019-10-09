@@ -29,6 +29,7 @@
 #include "searchbook.hpp"
 #include "bookdata.hpp"
 #include "util.hpp"
+#include "deletebook.hpp"
 
 using namespace std;
 
@@ -51,7 +52,9 @@ void invMenu (bookType books[]) {
 	{
 		system("clear");
 		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-		cout << "\t\t\t\t\t      Inventory Database\n\n";
+		cout << "\t\t\t\t\t      Inventory Database\n\n"
+		     << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+			 << " (Max 20)\n" << endl;
 
 		cout << "\t\t\t\t\t1.   Look Up a Book\n";
 		cout << "\t\t\t\t\t2.   Add a Book\n";
@@ -74,9 +77,7 @@ void invMenu (bookType books[]) {
 			editBook(books);
 			break;
 		case '4':
-			system("clear");
-			cout << "You entered choice 4...\n\n";
-			pause();
+			deleteBook(books);
 			break;
 		case '5':
 			exit = true;
