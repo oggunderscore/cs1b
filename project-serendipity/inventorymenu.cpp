@@ -30,6 +30,7 @@
 #include "bookdata.hpp"
 #include "util.hpp"
 #include "deletebook.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
@@ -50,10 +51,9 @@ void invMenu (bookType books[]) {
 
 	do
 	{
-		system("clear");
-		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-		cout << "\t\t\t\t\t      Inventory Database\n\n"
-		     << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+		printHeaderMenu(2);
+
+		cout << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
 			 << " (Max 20)\n" << endl;
 
 		cout << "\t\t\t\t\t1.   Look Up a Book\n";
@@ -83,9 +83,7 @@ void invMenu (bookType books[]) {
 			exit = true;
 			break;
 		default:
-			system("clear");
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				 << "\t\t\t\t\t      Inventory Database\n";
+			printHeaderMenu(2);
 			cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
 			pause();
 			break;

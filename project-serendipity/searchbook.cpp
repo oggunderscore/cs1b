@@ -26,6 +26,7 @@
 #include "searchbook.hpp"
 #include "bookdata.hpp"
 #include "util.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
@@ -45,10 +46,11 @@ int lookUpBookLogic(bookType books[], bool &wantExit)
             while (true) 
 			{
 				system("clear");
-				cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-        		cout << "\t\t\t\t\t       Cashier Module\n\n";
+				printHeaderMenu(4);
+
 				cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
 				cout << "\t\t\t\t    Is this the book you wanted? (Y/N): ";
+
 				cin >> selection;
 
 				if (selection == 'Y' || selection == 'y')
@@ -65,8 +67,7 @@ int lookUpBookLogic(bookType books[], bool &wantExit)
 				else
 				{
 					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-					cout << "\t\t\t\t\t         Book Search\n\n";
+					printHeaderMenu(4);
 					cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
 					pause();
 					continue;
@@ -104,8 +105,7 @@ void lookUpBook(bookType books[]) {
 
 	system("clear");
 
-	cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-	cout << "\t\t\t\t\t         Book Search\n\n";
+	printHeaderMenu(4);
 
 	cin.ignore();
 
@@ -137,8 +137,7 @@ void lookUpBook(bookType books[]) {
 				while (true)
 				{
 					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-					cout << "\t\t\t\t\t         Book Search\n\n";
+					printHeaderMenu(4);
 					cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
 					cout << "\t\t\t\t\tView this book record? (Y/N): ";
 					cin >> selectRecord;
@@ -157,8 +156,7 @@ void lookUpBook(bookType books[]) {
 					else
 					{
 						system("clear");
-						cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-						cout << "\t\t\t\t\t         Book Search\n\n";
+						printHeaderMenu(4);
 						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
 						pause();
 						continue;
@@ -178,12 +176,10 @@ void lookUpBook(bookType books[]) {
 		if (!found)
 		{
 			system("clear");
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-			cout << "\t\t\t\t\t         Book Search\n\n";
+			printHeaderMenu(4);
 			cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
 			pause();
 		}
-		//temp = "";
 	}
 	else
 	{

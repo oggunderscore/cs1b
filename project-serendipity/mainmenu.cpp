@@ -31,6 +31,7 @@
 #include "searchbook.hpp"
 #include "bookdata.hpp"
 #include "util.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
@@ -52,14 +53,14 @@ void mainMenu (bookType books[]) {
     do
     {
         system("clear");
-        cout
-            << "\t\t\t\t\t  Serendipity Book Sellers\n"
-            << "\t\t\t\t\t          Main Menu\n\n"
-            << "\t\t\t\t\t1.   Cashier Module\n"
-            << "\t\t\t\t\t2.   Inventory Database Module\n"
-            << "\t\t\t\t\t3.   Report Module\n"
-            << "\t\t\t\t\t4.   Exit\n\n"
-            << "\t\t\t\t\t     Enter Your Choice: ";
+        
+        printHeaderMenu(0);
+        
+        cout << "\t\t\t\t\t1.   Cashier Module\n"
+             << "\t\t\t\t\t2.   Inventory Database Module\n"
+             << "\t\t\t\t\t3.   Report Module\n"
+             << "\t\t\t\t\t4.   Exit\n\n"
+             << "\t\t\t\t\t     Enter Your Choice: ";
 
         cin >> choice;
 
