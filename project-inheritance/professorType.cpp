@@ -109,7 +109,7 @@ using namespace std;
         personType::print();
         cout << "Employee ID: " << getEmployeeID() << "\n" << "Department: " << getDepartment() 
                 << "\n" << "Degree: " << getDegree()
-                << "\n\n"; 
+                << "\n"; 
     }
 
 

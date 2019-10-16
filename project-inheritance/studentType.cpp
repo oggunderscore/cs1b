@@ -111,7 +111,7 @@ using namespace std;
         cout.precision(2);
         cout << "ID: " << getID() << "\n" << "GPA: " << getGPA() 
                 << "\n" << "Classification: " << getClassification()
-                << "\n\n"; 
+                << "\n"; 
     }
     
 
