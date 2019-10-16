@@ -9,13 +9,13 @@
 //--------------------------------------------------------------------------
 //  Purpose: This program will create 5 people:
 //           (1 personType, 2 studentType, 2 professorType)
-//           and output each of them to the console as well as calling the 
+//           and output each of them to the console as well as calling the
 //           equals() function on the 2 students.
 //--------------------------------------------------------------------------
-//  Algorithm: 
-//      Step 1: Initialize the personType, studentType, and professorType 
-//       variables and clear the console. 
-//      Step 2: Set the information for the variables using relevent 
+//  Algorithm:
+//      Step 1: Initialize the personType, studentType, and professorType
+//       variables and clear the console.
+//      Step 2: Set the information for the variables using relevent
 //              constructors.
 //      Step 3: Print out the variables using the print function.
 //      Step 4: Prompt the user to "Press any key to continue..." and clear
@@ -27,123 +27,181 @@
 
 using namespace std;
 
-	
-    //--------------------------------------------------------------------------
-    //  Function: equals
-    //--------------------------------------------------------------------------
-    //  Purpose: Compares whether two people are the same by looking at each
-    //           attribute individually.
-    //--------------------------------------------------------------------------
-	bool personType::equals(personType toCompare) {
-		if (getFName() == toCompare.getFName()
-			&& getLName() == toCompare.getLName()
-			&& getAddress() == toCompare.getAddress()
-			&& getHeight() == toCompare.getHeight()
-			&& getDob() == toCompare.getDob()
-			&& getGender() == toCompare.getGender()) {
+//--------------------------------------------------------------------------
+//  Function: equals
+//--------------------------------------------------------------------------
+//  Purpose: Compares whether two people are the same by looking at each
+//           attribute individually.
+//--------------------------------------------------------------------------
+bool personType::equals(personType toCompare)
+{
+	if (getFName() == toCompare.getFName() && getLName() == toCompare.getLName() && getAddress() == toCompare.getAddress() && getHeight() == toCompare.getHeight() && getDob() == toCompare.getDob() && getGender() == toCompare.getGender())
+	{
 		return true;
-		} else {
-			return false;
-		}
 	}
-	/***************** Constructors *********************/
-	personType::personType() {
-		//NOTE: I set the default gender to be X since '/0' obviously won't print anything
-		setInfo("DEFAULT-FIRST-NAME", 
-				"DEFAULT-LAST-NAME", 
-				"DEFAULT-ADDRESS", 
-				0, 
-				"DEFAULT-DATE-OF-BIRTH", 
-				'X');
+	else
+	{
+		return false;
 	}
+}
+/***************** Constructors *********************/
+personType::personType()
+{
+	//NOTE: I set the default gender to be X since '/0' obviously won't print anything
+	setInfo("DEFAULT-FIRST-NAME",
+			"DEFAULT-LAST-NAME",
+			"DEFAULT-ADDRESS",
+			0,
+			"DEFAULT-DATE-OF-BIRTH",
+			'X',
+			nullptr,
+			nullptr);
+}
 
-	personType::personType(string fName, string cName) {
-		setInfo(fName, 
-				cName, 
-				"DEFAULT-ADDRESS", 
-				0, 
-				"DEFAULT-DATE-OF-BIRTH", 
-				'X');
-	}
+personType::personType(string fName, string cName)
+{
+	setInfo(fName,
+			cName,
+			"DEFAULT-ADDRESS",
+			0,
+			"DEFAULT-DATE-OF-BIRTH",
+			'X', nullptr, nullptr);
+}
 
-	personType::personType(string fName, string cName, string address, 
-				double height, string dob, char gender) {
-		setInfo(fName, cName, address, height, dob, gender);     
-	}
-	/***************** Mutator Functions *********************/
+personType::personType(string fName, string cName, string address,
+					   double height, string dob, char gender)
+{
+	setInfo(fName, cName, address, height, dob, gender, nullptr, nullptr);
+}
 
-	void personType::setFname(string initFName) {
-		fName = initFName; 
-	}
+/***************** Mutator Functions *********************/
 
-	void personType::setLname(string initLName) {
-		lName = initLName;
-	}
+void personType::setFname(string initFName)
+{
+	fName = initFName;
+}
 
-	void personType::setAddress(string initAddress) {
-		address = initAddress;
-	}
+void personType::setLname(string initLName)
+{
+	lName = initLName;
+}
 
-	void personType::setHeight(double initHeight) {
-		height = initHeight;
-	}
+void personType::setAddress(string initAddress)
+{
+	address = initAddress;
+}
 
-	void personType::setDob(string initDob) {
-		dob = initDob;
-	}
-	
-	void personType::setGender(char initGender) {
-		gender = initGender;
-	}
+void personType::setHeight(double initHeight)
+{
+	height = initHeight;
+}
 
-	void personType::setInfo(string initFName, string initLName, string initAddress,
-					double initHeight, string initDob, char initGender) {
-		fName = initFName;
-		lName = initLName;
-		address = initAddress;
-		dob = initDob;
-		height = initHeight;
-		gender = initGender;
-	}
+void personType::setDob(string initDob)
+{
+	dob = initDob;
+}
 
-	/********************* Accessor Functions *********************/
+void personType::setGender(char initGender)
+{
+	gender = initGender;
+}
 
-	string personType::getFName() {
-		return fName;
-	}
+void personType::setMother(personType *initMother)
+{
+	mother = initMother;
+}
 
-	string personType::personType::getLName() {
-		return lName;
-	}
+void personType::setFather(personType *initFather)
+{
+	father = initFather;
+}
 
-	string personType::getAddress() {
-		return address;
-	}
+void personType::setInfo(string initFName, string initLName, string initAddress,
+						 double initHeight, string initDob, char initGender, personType *initMother, personType *initFather)
+{
+	fName = initFName;
+	lName = initLName;
+	address = initAddress;
+	dob = initDob;
+	height = initHeight;
+	gender = initGender;
+	mother = initMother;
+	father = initFather;
+}
 
-	double personType::getHeight() {
-		return height;
-	}
+/********************* Accessor Functions *********************/
 
-	string personType::getDob() {
-		return dob;
-	}
-	
-	char personType::getGender() {
-		return gender;
-	}
+string personType::getFName()
+{
+	return fName;
+}
 
-	//--------------------------------------------------------------------------
-    //  Function: print
-    //--------------------------------------------------------------------------
-    //  Purpose: Outputs a person's name, address, height, date of birth, and 
-	//           gender to the console.
-    //--------------------------------------------------------------------------
-	void personType::print() {
-		cout << fixed;
-		cout.precision(2);
-		cout << "Name: " << getFName() << " " << getLName() << "\n"
-				<< "Address: " << getAddress() << "\n"
-					<< "Height: " << getHeight() << " inches" << "\n"
-					<< "Date of Birth: " << getDob() << "\n"
-					<< "Gender: " << getGender() << "\n";
+string personType::personType::getLName()
+{
+	return lName;
+}
+
+string personType::getAddress()
+{
+	return address;
+}
+
+double personType::getHeight()
+{
+	return height;
+}
+
+string personType::getDob()
+{
+	return dob;
+}
+
+char personType::getGender()
+{
+	return gender;
+}
+
+personType personType::getMother()
+{
+	return *mother;
+}
+
+personType personType::getFather()
+{
+	return *father;
+}
+
+//--------------------------------------------------------------------------
+//  Function: print
+//--------------------------------------------------------------------------
+//  Purpose: Outputs a person's name, address, height, date of birth, and
+//           gender to the console.
+//--------------------------------------------------------------------------
+void personType::print()
+{
+	cout << fixed;
+	cout.precision(2);
+
+	if (mother != 0)
+	{
+		cout << "Mother: " << mother -> getFName() << " " << mother -> getLName() << endl;
 	}
+	else
+	{
+		cout << "Mother: UNKNOWN" << endl;
+	}
+	if (father != 0)
+	{
+		cout << "Father: " << father -> fName << " " << father -> lName << endl;
+	}
+	else
+	{
+		cout << "Father: UNKNOWN" << endl;
+	}
+	cout << "Name: " << getFName() << " " << getLName() << "\n"
+		 << "Address: " << getAddress() << "\n"
+		 << "Height: " << getHeight() << " inches"
+		 << "\n"
+		 << "Date of Birth: " << getDob() << "\n"
+		 << "Gender: " << getGender() << "\n";
+}

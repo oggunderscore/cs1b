@@ -1,25 +1,22 @@
 //--------------------------------------------------------------------------
 //  File name: arrays.cpp
-//  Project name: Dynamic Arrays
+//  Project name: Copy Constructors
 //--------------------------------------------------------------------------
 //  Creator's name and email: Felix Murray felix.murray@gmail.com
 //  Course Selection: CS1B
 //  Creation Date: 9/20/19
 //  Date of Last Modification: 10/19
 //--------------------------------------------------------------------------
-//  Purpose: This program will create 5 people:
-//           (1 personType, 2 studentType, 2 professorType)
-//           and output each of them to the console as well as calling the 
-//           equals() function on the 2 students.
+//  Purpose: This program will create 4 people:
+//           (1 personType, 2 studentType, 1 professorType)
+//           and output each of them to the console.
 //--------------------------------------------------------------------------
 //  Algorithm: 
-//      Step 1: Initialize the personType, studentType, and professorType 
-//       variables and clear the console. 
+//      Step 1: Prompt user Initialize the personType, studentType, and 
+//              professorType variables and clear the console. 
 //      Step 2: Set the information for the variables using relevent 
 //              constructors.
 //      Step 3: Print out the variables using the print function.
-//      Step 4: Prompt the user to "Press any key to continue..." and clear
-//              console once input has been recieved.
 //--------------------------------------------------------------------------
 #include <iostream>
 #include "personType.h"
@@ -30,6 +27,29 @@ using namespace std;
 
 int main()
 {
+    //--------------------------------------------------------------------------
+	// DATA DICTIONARY
+	//--------------------------------------------------------------------------
+	// VARIABLES
+	//
+	//   NAME                    DATA TYPE             VALUE
+	//--------------------------------------------------------------------------
+	//  first	                  string			   null
+	//  last                      string               null
+	//  house                     string               null
+	//  birthday                  string               null
+	//  heightLength              double               null
+	//  identifcation             string   			   null
+    //  grade                     double               null
+    //  classLevel                string               null
+    //  employeeIdentification    string               null
+    //  subject                   string               null
+    //  diploma                   string               null
+    //  personGender              char                 null
+    //  personChoice              char                 null
+    //  valid                     bool                 false
+    //  numPersons                int                  null
+	//--------------------------------------------------------------------------
     bool valid = false;
     int numPersons;
     string first;
@@ -54,7 +74,7 @@ int main()
 
     personType **personArray = new personType *[numPersons];
 
-    for (int i = 0; i < numPersons; i++)
+    for (int i = 0; i < numPersons - 1; i++)
     {
         while (!valid)
         {
@@ -163,6 +183,11 @@ int main()
     }
 
     cout << "\nFinished Input. Outputting your array...\n\n";
+
+    personArray[0] -> setMother(personArray[1]);
+	personArray[0] -> setFather(personArray[2]);
+
+    personArray[3] = personArray[0];
 
     for (int i = 0; i < numPersons; i++)
     {
