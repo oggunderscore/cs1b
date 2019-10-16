@@ -73,7 +73,7 @@ class personType {
         string getDob();
         char getGender();
 
-        void print();
+        virtual void print();
     private:
         string fName;
 		string lName;
