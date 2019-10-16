@@ -53,6 +53,14 @@ class personType {
         personType(string, string, string, 
 		           double, string, char);
 
+        personType(personType *person)
+    		: fName(person -> fName), 
+    		lName(person -> lName),
+    		address(person -> address),
+    		dob(person -> dob),
+    		height(person -> height),
+    		gender(person -> gender) {  }
+
        /***************** Mutator Functions *********************/
 
         void setFname(string);
@@ -62,7 +70,9 @@ class personType {
         void setDob(string);
         void setGender(char);
         void setInfo(string, string, string, 
-		           double, string, char);
+		           double, string, char, personType*, personType*);
+        void setMother(personType*);
+        void setFather(personType*);
 
        /********************* Accessor Functions *********************/                   
 
@@ -72,6 +82,8 @@ class personType {
         double getHeight();
         string getDob();
         char getGender();
+        personType getMother();
+        personType getFather();
 
         virtual void print();
     private:
@@ -81,6 +93,9 @@ class personType {
 		string dob;
 		double height;
 		char gender;
+        personType *mother;
+        personType *father;
+        
 };
 
 #endif
