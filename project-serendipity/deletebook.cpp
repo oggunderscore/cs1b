@@ -14,22 +14,32 @@
 void removeBook(bookType books_[], int index) {
     bookType** books = bookValueToPointer(books_);
 
-	system("clear");
-    int finalBook = index;
+	int bookCount = books[0]->getBookCount();
 
-    for (int i = index; i < 20 - 1; i++){
-      	books[i] -> setTitle(books[i + 1] -> getBookTitle());
-		books[i] -> setISBN(books[i +1 ] -> getISBN());
-		books[i] -> setAuthor(books[i + 1] -> getAuthor());
-		books[i] -> setPublisher(books[i + 1] -> getPublisher());
-		books[i] -> setDateAdded(books[i + 1] -> getDateAdded());
-		books[i] -> setQty(books[i + 1] -> getQtyAdded());
-		books[i] -> setWholesale(books[i + 1] -> getWholesale());
-		books[i] -> setRetail(books[i + 1] -> getRetail());
-        finalBook++;
-    }
-    delete books[finalBook];
-    books[0] -> decBookCount();
+	cout << "Book Count: " << bookCount;
+
+
+	//system("clear");
+
+	books[0] -> decBookCount();
+
+    if (books[index] != nullptr) {
+		delete books[index];
+	}
+
+	cout << "Made it to line 30";
+	pause();
+
+	for (int i = index; index < bookCount; i++) {
+		if (i == bookCount - 1) {
+			if (books[i] != nullptr) {
+				delete books[i];
+			}
+		} else {
+			books[i] = books[i + 1];
+		}
+	}
+    
 }
 
 void deleteBook(bookType books_[])
@@ -37,7 +47,7 @@ void deleteBook(bookType books_[])
 	bookType** books = bookValueToPointer(books_);
 	system("clear");
 	//Checks to see if there are any books in database
-	if (books[0] -> getBookCount() == 0)
+	if (books[0]->getBookCount() == 0)
 	{
 		system("clear");
         cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
