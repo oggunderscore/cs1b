@@ -9,28 +9,29 @@
 
 using namespace std;
 
-void editBook(bookType books[]) {  
-	 int toEdit;
+void editBook(bookType books_[]) {  
+	 bookType** books = bookValueToPointer(books_);
+
+     int toEdit;
      bool escape;
      char choice;
 
-
-     if (books[0].getBookCount() != 0) {
+     if (books[0] -> getBookCount() != 0) {
         system("clear"); 
         cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
         cout << "\t\t\t\t\t         Book Edit\n\n";
         cin.ignore();
 
-        toEdit = lookUpBookLogic(books, escape);
+        toEdit = lookUpBookLogic(books_, escape);
 
-        string tempBookTitle = books[toEdit].getBookTitle();
-        string tempISBN = books[toEdit].getISBN();
-	    string tempAuthor = books[toEdit].getAuthor();
-	    string tempPublisher = books[toEdit].getPublisher();
-	    string tempDateAdded = books[toEdit].getDateAdded();
-	    int tempQtyOnHand = books[toEdit].getQtyAdded();
-	    double tempWholeSale = books[toEdit].getWholesale();
-	    double tempRetail = books[toEdit].getRetail();
+        string tempBookTitle = books[toEdit] -> getBookTitle();
+        string tempISBN = books[toEdit] -> getISBN();
+	    string tempAuthor = books[toEdit] -> getAuthor();
+	    string tempPublisher = books[toEdit] -> getPublisher();
+	    string tempDateAdded = books[toEdit] -> getDateAdded();
+	    int tempQtyOnHand = books[toEdit] -> getQtyAdded();
+	    double tempWholeSale = books[toEdit] -> getWholesale();
+	    double tempRetail = books[toEdit] -> getRetail();
         
         while (toEdit == -1 && escape) {
             system("clear");
@@ -47,7 +48,7 @@ void editBook(bookType books[]) {
 			cout.precision(2);
 			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
 				 << "\t\t\t\t\t           Edit Book\n"
-			     << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+			     << "\t\t\t\t       Current Database Size: " << books[0] -> getBookCount()
 				 << " (Max 20)\n" << endl;
 			cout << "\t\t\t\t\t\t\t\t     + Pending Values +" << endl;
 			cout << "\t\t\t\t(1) Enter Book Title\t\t\t >   --" << tempBookTitle << endl;
@@ -116,7 +117,7 @@ void editBook(bookType books[]) {
                 case '9':
                     system("clear");
                     
-                    books[toEdit].setAll(tempBookTitle,
+                    books[toEdit] -> setAll(tempBookTitle,
                                          tempISBN, 
                                          tempAuthor, 
                                          tempPublisher, 

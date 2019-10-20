@@ -10,11 +10,34 @@
 #include "util.hpp"
 #include "limits"
 
-void deleteBook(bookType books[])
+
+void removeBook(bookType books_[], int index) {
+    bookType** books = bookValueToPointer(books_);
+
+	system("clear");
+    int finalBook = index;
+
+    for (int i = index; i < 20 - 1; i++){
+      	books[i] -> setTitle(books[i + 1] -> getBookTitle());
+		books[i] -> setISBN(books[i +1 ] -> getISBN());
+		books[i] -> setAuthor(books[i + 1] -> getAuthor());
+		books[i] -> setPublisher(books[i + 1] -> getPublisher());
+		books[i] -> setDateAdded(books[i + 1] -> getDateAdded());
+		books[i] -> setQty(books[i + 1] -> getQtyAdded());
+		books[i] -> setWholesale(books[i + 1] -> getWholesale());
+		books[i] -> setRetail(books[i + 1] -> getRetail());
+        finalBook++;
+    }
+    delete books[finalBook];
+    books[0] -> decBookCount();
+}
+
+void deleteBook(bookType books_[])
 {
+	bookType** books = bookValueToPointer(books_);
 	system("clear");
 	//Checks to see if there are any books in database
-	if (books[0].getBookCount() == 0)
+	if (books[0] -> getBookCount() == 0)
 	{
 		system("clear");
         cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
@@ -28,11 +51,12 @@ void deleteBook(bookType books[])
 		bool exit = false;
 		char selection;
 		int index;
+		
 		do
 		{
 			system("clear");
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			index = lookUpBookLogic(books, exit);
+			index = lookUpBookLogic(books_, exit);
 
 			//Checks to see if the book is in the database.
 			if (index == -1)
@@ -49,7 +73,7 @@ void deleteBook(bookType books[])
 			{
 				cout << "\t\t\t        Are you sure you want to delete this book? (Y/N): ";
 				cin >> selection;
-				//Quick error checking
+				
 				while (selection != 'Y' && selection != 'y' &&
 					   selection != 'N' && selection != 'n')
 				{
@@ -61,17 +85,8 @@ void deleteBook(bookType books[])
 
 				if (selection == 'Y' || selection == 'y')
 				{
-					//use the uber setter
-					books[index] = books[books[index].getBookCount() - 1];
-					books[books[index].getBookCount() - 1].setTitle("EMPTY");
-					books[books[index].getBookCount() - 1].setISBN("EMPTY");
-					books[books[index].getBookCount() - 1].setAuthor("EMPTY");
-					books[books[index].getBookCount() - 1].setPublisher("EMPTY");
-					books[books[index].getBookCount() - 1].setDateAdded("EMPTY");
-					books[books[index].getBookCount() - 1].setQty(0);
-					books[books[index].getBookCount() - 1].setWholesale(0);
-					books[books[index].getBookCount() - 1].setRetail(0);
-					books[index].decBookCount();
+					removeBook(books_, index);
+
 					cout << "\t\t\t Book Deleted. Would you like to delete another book? (Y/N): ";
 					cin >> selection;
 					while (selection != 'Y' && selection != 'y' &&
@@ -81,6 +96,10 @@ void deleteBook(bookType books[])
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\nERROR: Enter a valid option of (Y/N): ";
 						cin >> selection;
+					}
+					if (selection == 'Y' || selection == 'y') 
+					{
+						//something
 					}
 					if (selection == 'N' || selection == 'n')
 					{
@@ -99,7 +118,10 @@ void deleteBook(bookType books[])
 						cout << "\nEnter a valid option of (Y/N): ";
 						cin >> selection;
 					}
-					if (selection == 'N' || selection == 'n')
+					if (selection == 'Y' || selection == 'y') 
+					{ 
+						//something!
+					} else if (selection == 'N' || selection == 'n')
 					{
 						exit = true;
 					}

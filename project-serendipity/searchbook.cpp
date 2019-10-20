@@ -30,25 +30,27 @@
 
 using namespace std;
 
-int lookUpBookLogic(bookType books[], bool &wantExit)
+int lookUpBookLogic(bookType books_[], bool &wantExit)
 {
-   	string search;
+   	bookType** books = bookValueToPointer(books_);
+
+	string search;
 	string temp;
 	char selection;
     cout << "\nSearch: ";
     //cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
     getline(cin, search);
 	
-    for (int index = 0; index < books[0].getBookCount(); index++) {
-        size_t found = findCaseInsensitive(books[index].getBookTitle(), search);
+    for (int index = 0; index < books[0] -> getBookCount(); index++) {
+        size_t found = findCaseInsensitive(books[index] -> getBookTitle(), search);
 
         if (found != string::npos) {
             while (true) 
 			{
 				system("clear");
-				printHeaderMenu(4);
+				printHeaderMenu(MENU_LOOKUPBOOK);
 
-				cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
+				cout << "\t\t\t\t\t      RESULT>: " << books[index] -> getBookTitle() << "\n\n";
 				cout << "\t\t\t\t    Is this the book you wanted? (Y/N): ";
 
 				cin >> selection;
@@ -61,13 +63,12 @@ int lookUpBookLogic(bookType books[], bool &wantExit)
 				else if (selection == 'N' || selection == 'n')
 				{
 					wantExit = true;
-					break;
-					
+					return -1;
 				}
 				else
 				{
 					system("clear");
-					printHeaderMenu(4);
+					printHeaderMenu(MENU_LOOKUPBOOK);
 					cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
 					pause();
 					continue;
@@ -78,7 +79,7 @@ int lookUpBookLogic(bookType books[], bool &wantExit)
     return -1; 
 }
 
-void lookUpBook(bookType books[]) {
+void lookUpBook(bookType books_[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -95,6 +96,7 @@ void lookUpBook(bookType books[]) {
 	//  temp               string               null
 	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
+	bookType** books = bookValueToPointer(books_);
 
 	char selectRecord;
 	bool recordViewed = false;
@@ -109,7 +111,7 @@ void lookUpBook(bookType books[]) {
 
 	cin.ignore();
 
-	if (books[0].getBookCount() > 0)
+	if (books[0] -> getBookCount() > 0)
 	{
 		cout << "\t\t\t   Enter the title or ISBN of the book to search for:\n";
 		cout << "\t\t\t\t\t\t      ";
@@ -121,12 +123,12 @@ void lookUpBook(bookType books[]) {
 			searchTitle[i] = tolower(searchTitle[i]);
 		}
 
-		for (int index = 0; index < books[0].getBookCount(); index++)
+		for (int index = 0; index < books[0] -> getBookCount(); index++)
 		{
 			temp = "";
-			for (int indexInner = 0; indexInner < books[index].getBookTitle().length(); indexInner++)
+			for (int indexInner = 0; indexInner < books[index] -> getBookTitle().length(); indexInner++)
 			{
-				temp.append(1, tolower(books[index].getBookTitle().at(indexInner)));
+				temp.append(1, tolower(books[index] -> getBookTitle().at(indexInner)));
 			}
 			//uncomment below if temp value seems to be causing issues
 			//cout << temp << " " << "\n" << index << " ";
@@ -138,14 +140,15 @@ void lookUpBook(bookType books[]) {
 				{
 					system("clear");
 					printHeaderMenu(MENU_LOOKUPBOOK);
-					cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
+					cout << "\t\t\t\t\t      RESULT>: " << books[index] -> getBookTitle() << "\n\n";
 					cout << "\t\t\t\t\tView this book record? (Y/N): ";
 					cin >> selectRecord;
 					cin.ignore(600, '\n');
 
 					if (selectRecord == 'Y' || selectRecord == 'y')
 					{
-						bookInfo(index, books);
+						//CHANGE TO USE POINTER ARRAY
+						bookInfo(index, books_);
 						recordViewed = true;
 						break;
 					}
@@ -167,7 +170,7 @@ void lookUpBook(bookType books[]) {
 					break;
 				}
 			}
-			if (index > books[0].getBookCount() - 1)
+			if (index > books[0] -> getBookCount() - 1)
 			{
 				found = false;
 			}

@@ -3,6 +3,8 @@
 
 #include "bookdata.hpp"
 
+void removeBook(bookType books[], int index);
 void deleteBook(bookType books[]);
+
 
 #endif

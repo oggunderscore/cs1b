@@ -46,6 +46,8 @@ void addBook(bookType books[]) {
 	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
 
+	// bookType** books = bookValueToPointer(books_);
+
 	bool exit = false;
 	int index = 0;
 	char choice;

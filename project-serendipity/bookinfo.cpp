@@ -17,9 +17,11 @@
 #include <iostream>
 #include "bookinfo.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
-void bookInfo(int index, bookType books[]) {
-	books[index].print();
+void bookInfo(int index, bookType books_[]) {
+	bookType** books = bookValueToPointer(books_);
+	books[index] -> print();
 }
