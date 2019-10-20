@@ -10,6 +10,6 @@ struct tempBookData {
     int qty;
 };
 
-void cashier(bookType books[]);
+void cashier(bookType *books_[]);
 
 #endif

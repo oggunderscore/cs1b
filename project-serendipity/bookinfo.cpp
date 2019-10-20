@@ -21,7 +21,6 @@
 
 using namespace std;
 
-void bookInfo(int index, bookType books_[]) {
-	bookType** books = bookValueToPointer(books_);
-	books[index] -> print();
+void bookInfo(int index, bookType *books_[]) {
+	books_[index] -> print();
 }

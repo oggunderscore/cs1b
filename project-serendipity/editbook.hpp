@@ -3,6 +3,7 @@
 
 #include "bookdata.hpp"
 
-void editBook(bookType books[]);
+void editBook(bookType *books[]);
+void resetTemps(bookType &book);
 
 #endif

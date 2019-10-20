@@ -34,7 +34,7 @@
 
 using namespace std;
 
-void invMenu (bookType books[]) {
+void invMenu (bookType *books_[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -53,7 +53,7 @@ void invMenu (bookType books[]) {
 	{
 		printHeaderMenu(MENU_INVENTORY);
 
-		cout << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+		cout << "\t\t\t\t       Current Database Size: " << books_[0] -> getBookCount()
 			 << " (Max 20)\n" << endl;
 
 		cout << "\t\t\t\t\t1.   Look Up a Book\n";
@@ -68,16 +68,16 @@ void invMenu (bookType books[]) {
 		switch (choice)
 		{
 		case '1':
-			lookUpBook(books);
+			executeFind(books_);
 			break;
 		case '2':
-			addBook(books);
+			addBook(books_);
 			break;
 		case '3':
-			editBook(books);
+			editBook(books_);
 			break;
 		case '4':
-			deleteBook(books);
+			deleteBook(books_);
 			break;
 		case '5':
 			exit = true;
