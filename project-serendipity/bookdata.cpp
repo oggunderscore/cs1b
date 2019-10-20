@@ -1,47 +1,131 @@
 #include <iostream>
 #include <string>
 #include "bookdata.hpp"
+#include "util.hpp"
 
 using namespace std;
 
-void setTitle (string title, int index, bookType books[]) {
-    books[index].bookTitle = title;
+/**************** STATIC DECLARATIONS *********************/
+int bookType::bookCount = 0;
+
+//setters
+
+void bookType::setTitle (string initTitle) {
+    bookTitle = initTitle;
 }
 
-void setISBN (string isbn, int index, bookType books[]) {
-    books[index].isbn = isbn;
+void bookType::setISBN (string initISBN) {
+    isbn = initISBN;
 }
 
-void setAuthor (string author, int index, bookType books[]) {
-    books[index].author = author;
+void bookType::setAuthor (string initAuthor) {
+    author = initAuthor;
 }
 
-void setPublisher (string publisher, int index, bookType books[]) {
-    books[index].publisher = publisher;
+void bookType::setPublisher (string initPublisher) {
+    publisher = initPublisher;
 }
 
-void setDateAdded (string date, int index, bookType books[]) {
-    books[index].dateAdded = date;
+void bookType::setDateAdded (string initDate) {
+    dateAdded = initDate;
 }
 
-void setQty (int qty, int index, bookType books[]) {
-    books[index].qtyOnHand = qty;
+void bookType::setQty (int initQty) {
+    qtyOnHand = initQty;
 }
 
-void setWholesale (double wholesale, int index, bookType books[]) {
-    books[index].wholesale = wholesale;
+void bookType::setWholesale (double initWholesale) {
+    wholesale = initWholesale;
 }
 
-void setRetail (double retail, int index, bookType books[]) {
-    books[index].retail = retail;
+void bookType::setRetail (double initRetail) {
+    retail = initRetail;
 }
 
-// bool isEmpty () {
+void bookType::setAll(string initTitle, 
+                      string initISBN, 
+                      string initAuthor, 
+                      string initPublisher, 
+                      string initDate, 
+                      int initQty, 
+                      double initWholesale, 
+                      double initRetail) {
+    bookTitle = initTitle;
+    isbn = initISBN;
+    author = initAuthor;
+    publisher = initPublisher;
+    dateAdded = initDate;
+    qtyOnHand = initQty;
+    wholesale = initWholesale;
+    retail = initRetail;
+}
 
-// }
+//getters
 
-// void removeBook () {
+string bookType::getBookTitle() {
+    return bookTitle;    
+}
 
-// }
+string bookType::getISBN() {
+    return isbn;    
+}
+
+string bookType::getAuthor() {
+    return author;    
+}
+
+string bookType::getPublisher() {
+    return publisher;    
+}
+
+string bookType::getDateAdded() {
+    return dateAdded;    
+}
+
+int bookType::getQtyAdded() {
+    return qtyOnHand;
+}
+
+double bookType::getWholesale() {
+    return wholesale;
+}
+
+double bookType::getRetail() {
+    return retail;
+}
+
+//functions
+
+void bookType::print() {
+    system("clear");
+
+	cout << "\t\t\t\t\t  Serendipity Booksellers\n";
+	cout << "\t\t\t\t\t     Book Information\n\n";
+
+	cout << "\t\t\t\t\t Title:              " << getBookTitle() << endl;
+	cout << "\t\t\t\t\t ISBN:               " << getISBN() << endl;
+	cout << "\t\t\t\t\t Author:             " << getAuthor() << endl;
+	cout << "\t\t\t\t\t Publisher:          " << getPublisher() << endl;
+	cout << "\t\t\t\t\t Date Added:         " << getDateAdded() << endl;
+	cout << "\t\t\t\t\t Quantity on Hand:   " << getQtyAdded() << endl;
+	cout << "\t\t\t\t\t Wholesale Cost:   $ " << getWholesale() << endl;
+	cout << "\t\t\t\t\t Retail Price:     $ " << getRetail() << endl;
+    pause();
+}
+
+void bookType::incBookCount(){
+	bookCount++;
+}
+
+void bookType::decBookCount(){
+	bookCount--;
+}
+
+int bookType::getBookCount(){
+	return bookCount;
+}
+
+
+
 
 

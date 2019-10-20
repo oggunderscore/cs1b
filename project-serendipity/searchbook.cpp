@@ -21,18 +21,64 @@
 //--------------------------------------------------------------------------
 #include <iostream>
 #include <string>
+#include <limits>
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
+int lookUpBookLogic(bookType books[], bool &wantExit)
+{
+   	string search;
+	string temp;
+	char selection;
+    cout << "\nSearch: ";
+    //cin.ignore(numeric_limits<streamsize>::max(),'\n'); //Clear input buffer from previous text.
+    getline(cin, search);
+	
+    for (int index = 0; index < books[0].getBookCount(); index++) {
+        size_t found = findCaseInsensitive(books[index].getBookTitle(), search);
 
-// int lookUpLogic() {
+        if (found != string::npos) {
+            while (true) 
+			{
+				system("clear");
+				printHeaderMenu(4);
 
-// }
+				cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
+				cout << "\t\t\t\t    Is this the book you wanted? (Y/N): ";
 
-void lookUpBook(int &bookNums, bookType books[]) {
+				cin >> selection;
+
+				if (selection == 'Y' || selection == 'y')
+				{
+					wantExit = false;
+					return index;
+				}
+				else if (selection == 'N' || selection == 'n')
+				{
+					wantExit = true;
+					break;
+					
+				}
+				else
+				{
+					system("clear");
+					printHeaderMenu(4);
+					cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
+					pause();
+					continue;
+				}
+			}	
+        } 
+    }
+    return -1; 
+}
+
+void lookUpBook(bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -50,7 +96,6 @@ void lookUpBook(int &bookNums, bookType books[]) {
 	//  searchTitle        string               null
 	//--------------------------------------------------------------------------
 
-	char reply;
 	char selectRecord;
 	bool recordViewed = false;
 	bool found = false;
@@ -60,12 +105,11 @@ void lookUpBook(int &bookNums, bookType books[]) {
 
 	system("clear");
 
-	cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-	cout << "\t\t\t\t\t         Book Search\n\n";
+	printHeaderMenu(MENU_LOOKUPBOOK);
 
 	cin.ignore();
 
-	if (bookNums > 0)
+	if (books[0].getBookCount() > 0)
 	{
 		cout << "\t\t\t   Enter the title or ISBN of the book to search for:\n";
 		cout << "\t\t\t\t\t\t      ";
@@ -77,12 +121,12 @@ void lookUpBook(int &bookNums, bookType books[]) {
 			searchTitle[i] = tolower(searchTitle[i]);
 		}
 
-		for (int index = 0; index < bookNums; index++)
+		for (int index = 0; index < books[0].getBookCount(); index++)
 		{
 			temp = "";
-			for (int indexInner = 0; indexInner < books[index].bookTitle.length(); indexInner++)
+			for (int indexInner = 0; indexInner < books[index].getBookTitle().length(); indexInner++)
 			{
-				temp.append(1, tolower(books[index].bookTitle.at(indexInner)));
+				temp.append(1, tolower(books[index].getBookTitle().at(indexInner)));
 			}
 			//uncomment below if temp value seems to be causing issues
 			//cout << temp << " " << "\n" << index << " ";
@@ -93,9 +137,8 @@ void lookUpBook(int &bookNums, bookType books[]) {
 				while (true)
 				{
 					system("clear");
-					cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-					cout << "\t\t\t\t\t         Book Search\n\n";
-					cout << "\t\t\t\t\t      RESULT>: " << books[index].bookTitle << "\n\n";
+					printHeaderMenu(MENU_LOOKUPBOOK);
+					cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
 					cout << "\t\t\t\t\tView this book record? (Y/N): ";
 					cin >> selectRecord;
 					cin.ignore(600, '\n');
@@ -113,15 +156,10 @@ void lookUpBook(int &bookNums, bookType books[]) {
 					else
 					{
 						system("clear");
-						cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-						cout << "\t\t\t\t\t         Book Search\n\n";
+						printHeaderMenu(MENU_LOOKUPBOOK);
 						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
-						cout << "\t\t\t\t        Press any key to continue...";
-						cin >> reply;
-						if (reply != '\0')
-						{
-							continue;
-						}
+						pause();
+						continue;
 					}
 				}
 				if (recordViewed)
@@ -129,7 +167,7 @@ void lookUpBook(int &bookNums, bookType books[]) {
 					break;
 				}
 			}
-			if (index > bookNums - 1)
+			if (index > books[0].getBookCount() - 1)
 			{
 				found = false;
 			}
@@ -138,18 +176,14 @@ void lookUpBook(int &bookNums, bookType books[]) {
 		if (!found)
 		{
 			system("clear");
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-			cout << "\t\t\t\t\t         Book Search\n\n";
+			printHeaderMenu(MENU_LOOKUPBOOK);
 			cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
-			cout << "\t\t\t\t        Press any key to continue...";
-			cin >> reply;
+			pause();
 		}
-		//temp = "";
 	}
 	else
 	{
 		cout << "\t\t\t\t    No books currently in the database!\n\n";
-		cout << "\t\t\t\t        Press any key to continue...";
-		cin >> reply;
+		pause();
 	}
 }

@@ -25,12 +25,16 @@
 #include <string>
 #include "inventorymenu.hpp"
 #include "addbook.hpp"
+#include "editbook.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
+#include "deletebook.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
-void invMenu (int &bookNums, bookType books[]) {
+void invMenu (bookType books[]) {
 	//--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -44,13 +48,13 @@ void invMenu (int &bookNums, bookType books[]) {
 	//--------------------------------------------------------------------------
 	char choice;
 	bool exit = false;
-	char reply;
 
 	do
 	{
-		system("clear");
-		cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
-		cout << "\t\t\t\t\t      Inventory Database\n\n";
+		printHeaderMenu(MENU_INVENTORY);
+
+		cout << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+			 << " (Max 20)\n" << endl;
 
 		cout << "\t\t\t\t\t1.   Look Up a Book\n";
 		cout << "\t\t\t\t\t2.   Add a Book\n";
@@ -64,45 +68,25 @@ void invMenu (int &bookNums, bookType books[]) {
 		switch (choice)
 		{
 		case '1':
-			lookUpBook(bookNums, books);
+			lookUpBook(books);
 			break;
 		case '2':
-			addBook(bookNums, books);
+			addBook(books);
 			break;
 		case '3':
-			system("clear");
-			cout << "You entered choice 3...\n\n";
-			cout << "Press any key to continue...";
-			cin >> reply;
-			if (reply != '\0')
-			{
-				break;
-			}
+			editBook(books);
 			break;
 		case '4':
-			cout << "You entered choice 4...\n\n";
-			cout << "Press any key to continue...";
-			cin >> reply;
-			if (reply != '\0')
-			{
-				break;
-			}
+			deleteBook(books);
 			break;
 		case '5':
 			exit = true;
 			break;
 		default:
-			system("clear");
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				 << "\t\t\t\t\t      Inventory Database\n";
+			printHeaderMenu(MENU_INVENTORY);
 			cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
-			cout << "\t\t\t\t        Press any key to continue...";
-			cin >> reply;
-
-			if (reply != '\0')
-			{
-				break;
-			}
+			pause();
+			break;
 		}
 	} while (!exit);
 	

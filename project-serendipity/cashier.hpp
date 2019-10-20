@@ -3,6 +3,13 @@
 
 #include "bookdata.hpp"
 
-void cashier(int &bookNums, bookType books[]);
+struct tempBookData {
+    string title;
+    string isbn;
+    double retail;
+    int qty;
+};
+
+void cashier(bookType books[]);
 
 #endif

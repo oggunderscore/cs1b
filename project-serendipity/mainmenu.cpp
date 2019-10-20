@@ -30,10 +30,12 @@
 #include "bookinfo.hpp"
 #include "searchbook.hpp"
 #include "bookdata.hpp"
+#include "util.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
-void mainMenu (int &bookNum, bookType books[]) {
+void mainMenu (bookType books[]) {
     //--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
@@ -46,30 +48,29 @@ void mainMenu (int &bookNum, bookType books[]) {
     //  shouldLoop          bool                true 
 	//--------------------------------------------------------------------------
     char choice;
-    char reply;
     bool shouldLoop = true;
 
     do
     {
         system("clear");
-        cout
-            << "\t\t\t\t\t  Serendipity Book Sellers\n"
-            << "\t\t\t\t\t          Main Menu\n\n"
-            << "\t\t\t\t\t1.   Cashier Module\n"
-            << "\t\t\t\t\t2.   Inventory Database Module\n"
-            << "\t\t\t\t\t3.   Report Module\n"
-            << "\t\t\t\t\t4.   Exit\n\n"
-            << "\t\t\t\t\t     Enter Your Choice: ";
+        
+        printHeaderMenu(MENU_MAIN);
+        
+        cout << "\t\t\t\t\t1.   Cashier Module\n"
+             << "\t\t\t\t\t2.   Inventory Database Module\n"
+             << "\t\t\t\t\t3.   Report Module\n"
+             << "\t\t\t\t\t4.   Exit\n\n"
+             << "\t\t\t\t\t     Enter Your Choice: ";
 
         cin >> choice;
 
         switch (choice)
         {
         case '1':
-            cashier(bookNum, books);
+            cashier(books);
             break;
         case '2':
-            invMenu(bookNum, books);
+            invMenu(books);
             break;
         case '3':
             reportsMenu();
@@ -80,13 +81,10 @@ void mainMenu (int &bookNum, bookType books[]) {
             break;
         default:
             system("clear");
-            cout << "ERROR: Choice must be a number 1 - 4.\n\n";
-            cout << "Press any key to continue...";
-            cin >> reply;
-            if (reply != '\0')
-            {
-                break;
-            }
+            printHeaderMenu(MENU_MAIN);
+            cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 4.\n\n";
+            pause();
+            break;
         }
     } while (shouldLoop);
 }

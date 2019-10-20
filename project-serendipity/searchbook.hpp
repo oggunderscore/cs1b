@@ -3,6 +3,7 @@
 
 #include "bookdata.hpp"
 
-void lookUpBook(int &bookNums, bookType books[]);
+int lookUpBookLogic (bookType books[], bool &wantExit);
+void lookUpBook(bookType books[]);
 
 #endif

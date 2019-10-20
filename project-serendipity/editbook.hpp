@@ -3,6 +3,6 @@
 
 #include "bookdata.hpp"
 
-void editBook(int &bookNums, bookType books[]);
+void editBook(bookType books[]);
 
 #endif
