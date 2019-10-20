@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include "util.hpp"
+#include "bookdata.hpp"
 
 //using namespace std;
 
@@ -23,3 +24,13 @@ size_t findCaseInsensitive(std::string data, std::string target)
     return data.find(target, position);
 }
 
+
+bookType** bookValueToPointer(bookType array[]) {
+    bookType** pointerBooks = new bookType*[20];
+
+    for (int i = 0; i < 20; i++) {
+        pointerBooks[i] = &array[i];
+    }
+
+    return pointerBooks;
+}

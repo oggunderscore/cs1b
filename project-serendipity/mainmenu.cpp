@@ -54,7 +54,7 @@ void mainMenu (bookType books[]) {
     {
         system("clear");
         
-        printHeaderMenu(0);
+        printHeaderMenu(MENU_MAIN);
         
         cout << "\t\t\t\t\t1.   Cashier Module\n"
              << "\t\t\t\t\t2.   Inventory Database Module\n"
@@ -81,7 +81,8 @@ void mainMenu (bookType books[]) {
             break;
         default:
             system("clear");
-            cout << "ERROR: Choice must be a number 1 - 4.\n\n";
+            printHeaderMenu(MENU_MAIN);
+            cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 4.\n\n";
             pause();
             break;
         }

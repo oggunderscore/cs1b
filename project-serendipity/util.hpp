@@ -12,11 +12,14 @@
 //  Algorithm:
 //      n/a
 //--------------------------------------------------------------------------
+#include "bookdata.hpp"
+
 
 #ifndef UTIL_HPP_
 #define UTIL_HPP_
 
 void pause();
 size_t findCaseInsensitive(std::string data, std::string target);
+bookType** bookValueToPointer(bookType array[]); 
 
 #endif

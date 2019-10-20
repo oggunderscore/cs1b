@@ -24,6 +24,7 @@
 #include "addbook.hpp"
 #include "bookdata.hpp"
 #include "util.hpp"
+#include "menuformatting.hpp"
 
 using namespace std;
 
@@ -63,9 +64,10 @@ void addBook(bookType books[]) {
 			system("clear");
 			cout << fixed;
 			cout.precision(2);
-			cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-				 << "\t\t\t\t\t           Add Book\n"
-			     << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
+
+			printHeaderMenu(MENU_ADDBOOK);
+
+		    cout << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
 				 << " (Max 20)\n" << endl;
 			cout << "\t\t\t\t\t\t\t\t     + Pending Values +" << endl;
 			cout << "\t\t\t\t(1) Enter Book Title\t\t\t >   --" << tempBookTitle << endl;
@@ -153,8 +155,7 @@ void addBook(bookType books[]) {
 				tempWholeSale = 0;
 				tempRetail = 0;
 
-				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-					 << "\t\t\t\t\t           Add Book\n\n";
+				printHeaderMenu(MENU_ADDBOOK);
 				cout << "\t\t\t\t             Save was successful.\n\n";
 				pause();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear input buffer from previous text.
@@ -168,8 +169,7 @@ void addBook(bookType books[]) {
 				break;
 			default:
 				system("clear");
-				cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-					 << "\t\t\t\t\t           Add Book\n";
+				printHeaderMenu(MENU_ADDBOOK);
 				cout << "\n\t\t\t\t     ERROR: Choice must be a number 0 - 9.\n\n";
 				pause();
 			}
@@ -178,8 +178,7 @@ void addBook(bookType books[]) {
 	else
 	{
 		system("clear");
-		cout << "\t\t\t\t\t  Serendipity Book Sellers\n"
-			 << "\t\t\t\t\t           Add Book\n\n";
+		printHeaderMenu(MENU_ADDBOOK);
 		cout << "\t\t\t\t\t     ERROR: Database Full.\n\n";
 		pause();
 	}

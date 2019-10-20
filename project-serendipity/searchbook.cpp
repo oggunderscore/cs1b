@@ -105,7 +105,7 @@ void lookUpBook(bookType books[]) {
 
 	system("clear");
 
-	printHeaderMenu(4);
+	printHeaderMenu(MENU_LOOKUPBOOK);
 
 	cin.ignore();
 
@@ -137,7 +137,7 @@ void lookUpBook(bookType books[]) {
 				while (true)
 				{
 					system("clear");
-					printHeaderMenu(4);
+					printHeaderMenu(MENU_LOOKUPBOOK);
 					cout << "\t\t\t\t\t      RESULT>: " << books[index].getBookTitle() << "\n\n";
 					cout << "\t\t\t\t\tView this book record? (Y/N): ";
 					cin >> selectRecord;
@@ -156,7 +156,7 @@ void lookUpBook(bookType books[]) {
 					else
 					{
 						system("clear");
-						printHeaderMenu(4);
+						printHeaderMenu(MENU_LOOKUPBOOK);
 						cout << "\t\t\t\t       ERROR: Input must be 'Y' or 'N'\n\n";
 						pause();
 						continue;
@@ -176,7 +176,7 @@ void lookUpBook(bookType books[]) {
 		if (!found)
 		{
 			system("clear");
-			printHeaderMenu(4);
+			printHeaderMenu(MENU_LOOKUPBOOK);
 			cout << "\t\t\t Book not found. Please search for a book within the inventory.\n";
 			pause();
 		}

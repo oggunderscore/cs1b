@@ -51,7 +51,7 @@ void invMenu (bookType books[]) {
 
 	do
 	{
-		printHeaderMenu(2);
+		printHeaderMenu(MENU_INVENTORY);
 
 		cout << "\t\t\t\t       Current Database Size: " << books[0].getBookCount()
 			 << " (Max 20)\n" << endl;
@@ -83,7 +83,7 @@ void invMenu (bookType books[]) {
 			exit = true;
 			break;
 		default:
-			printHeaderMenu(2);
+			printHeaderMenu(MENU_INVENTORY);
 			cout << "\n\t\t\t\t     ERROR: Choice must be a number 1 - 5.\n\n";
 			pause();
 			break;

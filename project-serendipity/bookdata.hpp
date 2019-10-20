@@ -51,9 +51,5 @@ class bookType
         double wholesale;
         double retail;
         static int bookCount;
-
-    
-    
-    
 };
 #endif
