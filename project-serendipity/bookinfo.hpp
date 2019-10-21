@@ -3,6 +3,6 @@
 
 #include "bookdata.hpp"
 
-void bookInfo(int index, bookType books[]);
+void bookInfo(int index, bookType *books[]);
 
 #endif

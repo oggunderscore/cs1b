@@ -21,10 +21,12 @@
 
 using namespace std;
 
-int main () {
-    bookType books[20];
+const int DBSIZE = 20;
 
-    mainMenu(books); 
+int main () {
+    bookType *books_[20];
+
+    mainMenu(books_); 
 
     return 0;
 }

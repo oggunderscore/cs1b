@@ -18,6 +18,6 @@
 
 #include "bookdata.hpp"
 
-void invMenu(bookType books[]);
+void invMenu(bookType *books[]);
 
 #endif

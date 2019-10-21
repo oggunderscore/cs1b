@@ -33,11 +33,61 @@
 #include "util.hpp"
 #include "limits"
 
+#include "resultstype.hpp"
+
 using namespace std;
 
 #define SALES_TAX 0.06;
 
-void cashier(bookType books[])
+int cashierSearch(bookType *book[]) {
+    string search, temp, tempInt;    
+    bool foundNeg = true;
+    int amount;
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    do {
+        cout << "\nPurchase Request (exact title/isbn): ";
+        //cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        getline(cin, temp);
+        tempInt = temp.substr(0, 3);
+        if (tempInt.find("-") != string::npos) {    
+            cout << "ERROR: Cannot enter negative numbers!" << endl;
+            foundNeg = true;
+        } else {
+            foundNeg = false;
+            amount = stoi(tempInt);
+            search = temp.substr(4, temp.length()); //50 x Title
+        }
+    } while (foundNeg == true);
+    
+    if (amount != 0) {
+        for (int x = 0; x < 20; x++) {
+            size_t found = findCaseInsensitive(book[x]->getBookTitle(), search);
+            if (found != string::npos) {
+                if (book[x]->getQtyAdded() < amount) {
+                    return (-2);
+                } else {
+                    return x;
+                }
+            } else { 
+                for (int x = 0; x < 20; x++) {
+                    found = book[x]->getISBN().find(search);
+                    if (found != string::npos) {
+                        if (book[x]->getQtyAdded() < amount) {
+                            return (-2);
+                        } else {
+                            return x;
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        return (-3);
+    }
+    return (-1);
+}
+
+void cashier(bookType *books_[])
 {
     //--------------------------------------------------------------------------
     // DATA DICTIONARY
@@ -70,7 +120,9 @@ void cashier(bookType books[])
 
     int tempBooks[20] = {0};
 
-    if (books[0].getBookCount() != 0)
+    resultsType results[20]; // kevins new code
+
+    if (books_[0]->getBookCount() != 0)
     {
         while (!exit)
         {
@@ -79,10 +131,10 @@ void cashier(bookType books[])
             cout << "\t\t\t\t\t       Cashier Module\n\n";
             cin.ignore();
 
-            toBuy = lookUpBookLogic(books, escape);
+            toBuy = cashierSearch(books_);
 
             //supposed to check if the books is out of stocks
-            while (books[toBuy].getQtyAdded() <= 0)
+            while (books_[toBuy]->getQtyAdded() <= 0)
             {
                 system("clear");
                 cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
@@ -93,7 +145,7 @@ void cashier(bookType books[])
                 system("clear");
                 cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
                 cout << "\t\t\t\t\t       Cashier Module\n\n";
-                toBuy = lookUpBookLogic(books, escape);
+                toBuy = cashierSearch(books_);
             }
             //supposed to be the check for if lookUp returns -1
             while (toBuy == -1)
@@ -111,9 +163,9 @@ void cashier(bookType books[])
             while (!escape)
             {
                 cout << "\t\t\t\t\n    How Many Copies? (Current Qty: "
-                     << books[toBuy].getQtyAdded() << " ): ";
+                     << books_[toBuy]->getQtyAdded() << " ): ";
                 cin >> qty;
-                if (qty > books[toBuy].getQtyAdded() || qty <= 0)
+                if (qty > books_[toBuy]->getQtyAdded() || qty <= 0)
                 {
                     system("clear");
                     cout << "\t\t\t\t\t  Serendipity Book Sellers\n";
@@ -130,14 +182,14 @@ void cashier(bookType books[])
 
                     if (choice == 'y' || choice == 'Y')
                     {
-                        books[toBuy].setQty(books[toBuy].getQtyAdded() - qty);
-                        subtotal += qty * books[toBuy].getRetail();
+                        books_[toBuy]->setQty(books_[toBuy]->getQtyAdded() - qty);
+                        subtotal += qty * books_[toBuy]->getRetail();
                         break;
                     }
                     else if (choice == 'n' || choice == 'N')
                     {
-                        books[toBuy].setQty(books[toBuy].getQtyAdded() - qty);
-                        subtotal += qty * books[toBuy].getRetail();
+                        books_[toBuy]->setQty(books_[toBuy]->getQtyAdded() - qty);
+                        subtotal += qty * books_[toBuy]->getRetail();
 
                         final = true;
                     }
@@ -159,15 +211,15 @@ void cashier(bookType books[])
                         cout << "\n\n\n";
 
                   
-                        for (int j = 0; j < books[j].getBookCount(); j++)
+                        for (int j = 0; j < books_[j]->getBookCount(); j++)
                         {
                             if (tempBooks[j] > 0)
                             {
                                 cout << tempBooks[j] << "\t";                                                   //display quantity
-                                cout << left << setw(14) << books[j].getISBN() << "\t";                         //display ISBN
-                                cout << left << setw(26) << books[j].getBookTitle() << "\t$ ";                  //displays title
-                                cout << fixed << showpoint << right << setprecision(2) << books[j].getRetail(); //set up number formatting
-                                cout << setw(14) << books[j].getRetail() * tempBooks[j] << "\t\n\n";            //display price
+                                cout << left << setw(14) << books_[j]->getISBN() << "\t";                         //display ISBN
+                                cout << left << setw(26) << books_[j]->getBookTitle() << "\t$ ";                  //displays title
+                                cout << fixed << showpoint << right << setprecision(2) << books_[j]->getRetail(); //set up number formatting
+                                cout << setw(14) << books_[j]->getRetail() * tempBooks[j] << "\t\n\n";            //display price
                             }
                         }
 

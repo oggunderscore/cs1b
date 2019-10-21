@@ -35,7 +35,7 @@
 
 using namespace std;
 
-void mainMenu (bookType books[]) {
+void mainMenu (bookType *books[]) {
     //--------------------------------------------------------------------------
 	// DATA DICTIONARY
 	//--------------------------------------------------------------------------
